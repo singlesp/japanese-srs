@@ -165,6 +165,47 @@ for form_key, question, form_name, form_desc in CONJ_FORMS:
     })
 
 # 5. Adjective conjugation decks
+
+# ── i-adjective conjugation helper ────────────────────────────────
+# The adjective いい / よい ("good") is irregular: its casual forms come from
+# the stem よ (よくない / よかった / よくなかった), NOT いく-. Critically, any
+# compound whose final element is this いい inherits the irregularity:
+#   あたまがいい → あたまがよくない    なかがいい → なかがよくない
+#   かっこいい  → かっこよくない
+# These were previously rendered as あたまがくない / なかがくない / かっこくない,
+# which is what Atsuko-sensei flagged.
+#
+# One trap: かわいい ("cute") also ends in いい but is a normal i-adjective and
+# conjugates regularly (かわいくない, never かわよくない). It is listed as an
+# explicit exception below. Add any future 〜いい words that are NOT "good".
+#
+# Second bug fixed here: the old code used hira.rstrip("い"), which strips ALL
+# trailing い. For any word ending in double-い that over-stripped a kana
+# (かわいい → かわ → かわくない). We now drop exactly ONE final い.
+REGULAR_II_ADJECTIVES = {'かわいい'}  # end in いい but are NOT the irregular "good"
+
+def i_adj_info(hira):
+    """Return (forms_dict, is_irregular_good) for a casual i-adjective.
+
+    Slash-separated entries (e.g. "しょっぱい / しおからい") conjugate from the
+    first/primary form only.
+    """
+    primary = hira.split('/')[0].strip()
+    is_good = (
+        primary in ('いい', 'よい')
+        or (primary.endswith(('いい', 'よい')) and primary not in REGULAR_II_ADJECTIVES)
+    )
+    if is_good:
+        stem = (primary[:-2] if len(primary) >= 2 else '') + 'よ'
+    else:
+        stem = primary[:-1] if primary.endswith('い') else primary
+    forms = {
+        'neg_cas':     stem + 'くない',
+        'past_cas':    stem + 'かった',
+        'negpast_cas': stem + 'くなかった',
+    }
+    return forms, is_good
+
 def make_adj_conj_cards(adj_type, form_key, question, rule_i, rule_na):
     cards = []
     for cat in adj_data['categories']:
@@ -174,19 +215,14 @@ def make_adj_conj_cards(adj_type, form_key, question, rule_i, rule_na):
             hira = w['hiragana']
             eng  = w['english']
             if adj_type == 'i':
-                if hira in ('いい', 'いい / よい'):
-                    forms = {'neg_cas':'よくない','past_cas':'よかった','negpast_cas':'よくなかった'}
-                else:
-                    stem = hira.rstrip('い') if hira.endswith('い') else hira
-                    forms = {
-                        'neg_cas':     stem + 'くない',
-                        'past_cas':    stem + 'かった',
-                        'negpast_cas': stem + 'くなかった',
-                    }
+                forms, is_good = i_adj_info(hira)
                 answer = forms.get(form_key, '?')
                 rule   = rule_i
+                if is_good:
+                    rule = 'Irregular: いい/よい (good) uses stem よ — よくない / よかった / よくなかった'
             else:
-                answer = {'neg_pol': hira+'ではありません','past_pol': hira+'でした'}.get(form_key,'?')
+                primary = hira.split('/')[0].strip()
+                answer = {'neg_pol': primary+'ではありません','past_pol': primary+'でした'}.get(form_key,'?')
                 rule   = rule_na
             safe_id = hira.replace(' ','_').replace('/','_')
             cards.append({
@@ -326,6 +362,36 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
 .stat-num.green { color: var(--green); }
 .stat-label { font-size:0.72rem; color:var(--gray); margin-top:2px;
   text-transform:uppercase; letter-spacing:0.04em; }
+
+/* ── Search ───────────────────────────────────────────────────── */
+.search-wrap { position:relative; margin-bottom:24px; }
+.search-icon { position:absolute; left:14px; top:50%; transform:translateY(-50%);
+  font-size:0.95rem; opacity:0.55; pointer-events:none; }
+.search-input { width:100%; padding:13px 42px 13px 40px; border:1.5px solid var(--border);
+  border-radius:12px; font-family:var(--ui); font-size:0.9rem; color:var(--navy);
+  background:var(--surface); box-shadow:var(--shadow); outline:none; transition:border-color 0.12s; }
+.search-input::placeholder { color:var(--gray); }
+.search-input:focus { border-color:var(--blue); }
+.search-clear { position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  background:none; border:none; cursor:pointer; font-size:0.85rem; color:var(--gray);
+  padding:6px 9px; border-radius:8px; line-height:1; }
+.search-clear:hover { background:var(--bg); color:var(--navy); }
+.search-results { display:none; flex-direction:column; gap:8px; margin-bottom:28px; }
+.search-results.active { display:flex; }
+.search-count { font-size:0.74rem; color:var(--gray); margin-bottom:2px; }
+.sr-card { background:var(--surface); border-radius:var(--radius); padding:12px 14px;
+  box-shadow:var(--shadow); border:1.5px solid transparent; cursor:pointer;
+  transition:transform 0.1s, border-color 0.1s; }
+.sr-card:hover { transform:translateY(-1px); border-color:var(--border); }
+.sr-top { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:5px; }
+.sr-deck { font-size:0.68rem; color:var(--gray); text-transform:uppercase; letter-spacing:0.04em; }
+.sr-label { font-size:0.66rem; color:var(--blue); font-weight:600; white-space:nowrap; }
+.sr-front { font-family:var(--jp); font-size:1.15rem; font-weight:700; color:var(--navy); }
+.sr-front .sr-fsub { font-size:0.8rem; color:var(--gray); font-weight:400; margin-left:8px; }
+.sr-back { font-family:var(--jp); font-size:0.95rem; color:var(--green); margin-top:3px; }
+.sr-back .sr-bsub { color:var(--gray); font-size:0.8rem; margin-left:8px; }
+.sr-empty { text-align:center; color:var(--gray); font-size:0.88rem; padding:28px 16px;
+  background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow); }
 
 /* ── Study-all banner ─────────────────────────────────────────── */
 .study-all-banner { background:var(--navy); color:#fff; border-radius:var(--radius);
@@ -507,6 +573,15 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
       <button class="btn-back" onclick="showIntro()" style="font-size:0.75rem">About ℹ</button>
     </div>
 
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input id="search-input" class="search-input" type="text" autocomplete="off"
+        placeholder="Search cards — Japanese, romaji, or English…" oninput="runSearch(this.value)">
+      <button id="search-clear" class="search-clear" onclick="clearSearch()" style="display:none" aria-label="Clear search">✕</button>
+    </div>
+    <div id="search-results" class="search-results"></div>
+
+    <div id="home-body">
     <div class="stat-bar">
       <div class="stat"><div class="stat-num red"   id="home-due">—</div><div class="stat-label">Due Now</div></div>
       <div class="stat"><div class="stat-num blue"  id="home-learning">—</div><div class="stat-label">Learning</div></div>
@@ -543,6 +618,7 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
       </div>
       <p class="progress-note">Your progress is automatically saved in this browser. Export / Import is only needed to back up your data or move to a different browser or device.</p>
     </div>
+    </div><!-- /#home-body -->
   </div>
 
   <!-- ── STUDY ─────────────────────────────────────────────────── -->
@@ -711,6 +787,7 @@ function goHome() {
 // HOME RENDER
 // ================================================================
 function renderHome() {
+  resetSearch();
   const all = deckStats('__all__');
   document.getElementById('home-due').textContent      = all.due;
   document.getElementById('home-learning').textContent = all.learning;
@@ -783,6 +860,106 @@ function renderDeckList(containerId, deckIds) {
       '<div class="deck-due ' + dueClass + '">' + dueLabel + '</div>';
     el.appendChild(div);
   }
+}
+
+// ================================================================
+// SEARCH
+// ================================================================
+// Flat, lowercase-indexed view of every card across every deck.
+const SEARCH_INDEX = DECKS.flatMap(function(d) {
+  return d.cards.map(function(c) {
+    const parts = [c.front, c.frontSub, c.frontLabel, c.back, c.backSub, c.notes, d.name];
+    return {
+      deckId:    d.id,
+      deckName:  d.name,
+      deckIcon:  d.icon,
+      front:     c.front,
+      frontSub:  c.frontSub,
+      frontLabel:c.frontLabel,
+      back:      c.back,
+      backSub:   c.backSub,
+      hay:       parts.join(" ").toLowerCase()
+    };
+  });
+});
+
+function escHtml(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function runSearch(raw) {
+  const q         = (raw || '').trim().toLowerCase();
+  const clearBtn  = document.getElementById('search-clear');
+  const resultsEl = document.getElementById('search-results');
+  const bodyEl    = document.getElementById('home-body');
+  clearBtn.style.display = q ? '' : 'none';
+
+  if (!q) {
+    resultsEl.classList.remove('active');
+    resultsEl.innerHTML = '';
+    bodyEl.style.display = '';
+    return;
+  }
+
+  bodyEl.style.display = 'none';
+  resultsEl.classList.add('active');
+
+  const matches = SEARCH_INDEX.filter(function(r) { return r.hay.indexOf(q) !== -1; });
+  const CAP   = 60;
+  const shown = matches.slice(0, CAP);
+
+  let html = '<div class="search-count">' + matches.length + ' result' +
+    (matches.length === 1 ? '' : 's') +
+    (matches.length > CAP ? ' (showing first ' + CAP + ')' : '') + '</div>';
+
+  if (shown.length === 0) {
+    html += '<div class="sr-empty">No cards match “' + escHtml(raw.trim()) + '”</div>';
+  } else {
+    shown.forEach(function(r) {
+      const label = r.frontLabel ? '<span class="sr-label">' + escHtml(r.frontLabel) + '</span>' : '';
+      const fsub  = r.frontSub  ? '<span class="sr-fsub">'  + escHtml(r.frontSub)  + '</span>' : '';
+      const bsub  = r.backSub   ? '<span class="sr-bsub">'  + escHtml(r.backSub)   + '</span>' : '';
+      html +=
+        '<div class="sr-card" data-deck="' + escHtml(r.deckId) + '">' +
+          '<div class="sr-top">' +
+            '<span class="sr-deck">' + r.deckIcon + ' ' + escHtml(r.deckName) + '</span>' +
+            label +
+          '</div>' +
+          '<div class="sr-front">' + escHtml(r.front) + fsub + '</div>' +
+          '<div class="sr-back">' + escHtml(r.back) + bsub + '</div>' +
+        '</div>';
+    });
+  }
+  resultsEl.innerHTML = html;
+}
+
+// Delegated click: tapping a result jumps into that card's deck.
+function initSearchClicks() {
+  const resultsEl = document.getElementById('search-results');
+  if (!resultsEl) return;
+  resultsEl.addEventListener('click', function(e) {
+    const card = e.target.closest('.sr-card');
+    if (card && card.dataset.deck) startSession(card.dataset.deck);
+  });
+}
+
+function clearSearch() {
+  const input = document.getElementById('search-input');
+  input.value = '';
+  runSearch('');
+  input.focus();
+}
+
+function resetSearch() {
+  const input = document.getElementById("search-input");
+  if (input) input.value = "";
+  const clearBtn = document.getElementById("search-clear");
+  if (clearBtn) clearBtn.style.display = "none";
+  const resultsEl = document.getElementById("search-results");
+  if (resultsEl) { resultsEl.classList.remove("active"); resultsEl.innerHTML = ""; }
+  const bodyEl = document.getElementById("home-body");
+  if (bodyEl) bodyEl.style.display = "";
 }
 
 // ================================================================
@@ -942,6 +1119,7 @@ function shuffle(arr) {
 // ================================================================
 // INIT
 // ================================================================
+initSearchClicks();
 if (localStorage.getItem(SEEN_INTRO_KEY)) {
   renderHome();
   showScreen('home');

@@ -123,7 +123,7 @@ The build script auto-discovers all `weekly_recap_*.json` files via glob, sorted
 }
 ```
 
-The `いい / よい` adjective (good) is a special case: the build script detects hiragana `いい` or `いい / よい` and uses stem `よ` for conjugation (negative: よくない, past: よかった).
+The `いい / よい` adjective (good) is irregular: its casual forms use stem `よ` (よくない / よかった / よくなかった), not `いく-`. This irregularity also applies to **compounds ending in this いい** — `あたまがいい → あたまがよくない`, `なかがいい → なかがよくない`, `かっこいい → かっこよくない`. The helper `i_adj_info()` in `build_app.py` handles this. Note the exception set `REGULAR_II_ADJECTIVES` (currently `かわいい`): words that end in いい but are ordinary i-adjectives (`かわいい → かわいくない`, not かわよくない). Regular i-adjectives drop exactly one trailing `い` (never use `rstrip("い")`, which over-strips double-い words). Slash entries like `しょっぱい / しおからい` conjugate from the first form.
 
 ### Verbs (`data/verbs.json`)
 
