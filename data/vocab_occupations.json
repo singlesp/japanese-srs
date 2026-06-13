@@ -1,0 +1,29 @@
+{
+  "id": "occupations",
+  "name": "Occupations",
+  "icon": "💼",
+  "source": "vocabulary 1 v2.pdf",
+  "groups": [
+    {
+      "name": "Occupations",
+      "cards": [
+        {"id":"occ_sensei",      "front":"せんせい",      "frontSub":"先生",   "back":"teacher (honorific)",   "backSub":"sensei",      "notes":"Use きょうし when stating your own occupation"},
+        {"id":"occ_kyoushi",     "front":"きょうし",      "frontSub":"教師",   "back":"teacher (self-reference)","backSub":"kyoushi"},
+        {"id":"occ_isha",        "front":"いしゃ",         "frontSub":"医者",   "back":"doctor",                "backSub":"isha"},
+        {"id":"occ_kangoshi",    "front":"かんごし",       "frontSub":"看護師", "back":"nurse",                 "backSub":"kangoshi"},
+        {"id":"occ_kenkyuusha",  "front":"けんきゅうしゃ", "frontSub":"研究者", "back":"researcher",            "backSub":"kenkyuusha"},
+        {"id":"occ_bengoshi",    "front":"べんごし",       "frontSub":"弁護士", "back":"lawyer",                "backSub":"bengoshi"},
+        {"id":"occ_keisatsukan", "front":"けいさつかん",   "frontSub":"警察官", "back":"police officer",        "backSub":"keisatsukan"},
+        {"id":"occ_shouboushi",  "front":"しょうぼうし",   "frontSub":"消防士", "back":"firefighter",           "backSub":"shouboushi"},
+        {"id":"occ_kashu",       "front":"かしゅ",         "frontSub":"歌手",   "back":"singer",                "backSub":"kashu"},
+        {"id":"occ_kaishain",    "front":"かいしゃいん",   "frontSub":"会社員", "back":"office worker",         "backSub":"kaishain",    "notes":"Anyone who works at a company"},
+        {"id":"occ_ginkouin",    "front":"ぎんこういん",   "frontSub":"銀行員", "back":"bank worker",           "backSub":"ginkouin"},
+        {"id":"occ_tenin",       "front":"てんいん",       "frontSub":"店員",   "back":"shop staff",            "backSub":"tenin"},
+        {"id":"occ_gakusei",     "front":"がくせい",       "frontSub":"学生",   "back":"student",               "backSub":"gakusei"},
+        {"id":"occ_shachou",     "front":"しゃちょう",     "frontSub":"社長",   "back":"company president",     "backSub":"shachou"},
+        {"id":"occ_shufu",       "front":"しゅふ",         "frontSub":"主婦",   "back":"housewife",             "backSub":"shufu"},
+        {"id":"occ_mushoku",     "front":"むしょく",       "frontSub":"無職",   "back":"unemployed",            "backSub":"mushoku"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "family",
+  "name": "Family",
+  "icon": "👨‍👩‍👧",
+  "source": "vocabulary 1 v2.pdf",
+  "notes": "Japanese has two sets: humble forms for YOUR family, respectful forms for SOMEONE ELSE'S family.",
+  "groups": [
+    {
+      "name": "My Family (humble)",
+      "cards": [
+        {"id":"fam_chichi",    "front":"ちち",       "frontSub":"父",   "back":"(my) father",         "backSub":"chichi"},
+        {"id":"fam_haha",      "front":"はは",       "frontSub":"母",   "back":"(my) mother",         "backSub":"haha"},
+        {"id":"fam_ani",       "front":"あに",       "frontSub":"兄",   "back":"(my) elder brother",  "backSub":"ani"},
+        {"id":"fam_ane",       "front":"あね",       "frontSub":"姉",   "back":"(my) elder sister",   "backSub":"ane"},
+        {"id":"fam_otouto",    "front":"おとうと",   "frontSub":"弟",   "back":"(my) younger brother","backSub":"otouto"},
+        {"id":"fam_imouto",    "front":"いもうと",   "frontSub":"妹",   "back":"(my) younger sister", "backSub":"imouto"},
+        {"id":"fam_otto",      "front":"おっと",     "frontSub":"夫",   "back":"(my) husband",        "backSub":"otto"},
+        {"id":"fam_tsuma",     "front":"つま",       "frontSub":"妻",   "back":"(my) wife",           "backSub":"tsuma"},
+        {"id":"fam_kodomo",    "front":"こども",     "frontSub":"子供", "back":"(my) child",          "backSub":"kodomo"},
+        {"id":"fam_musuko",    "front":"むすこ",     "frontSub":"息子", "back":"(my) son",            "backSub":"musuko"},
+        {"id":"fam_musume",    "front":"むすめ",     "frontSub":"娘",   "back":"(my) daughter",       "backSub":"musume"},
+        {"id":"fam_sofu",      "front":"そふ",       "frontSub":"祖父", "back":"(my) grandfather",    "backSub":"sofu"},
+        {"id":"fam_sobo",      "front":"そぼ",       "frontSub":"祖母", "back":"(my) grandmother",    "backSub":"sobo"},
+        {"id":"fam_oji",       "front":"おじ",       "frontSub":"伯父", "back":"(my) uncle",          "backSub":"oji"},
+        {"id":"fam_oba",       "front":"おば",       "frontSub":"伯母", "back":"(my) aunt",           "backSub":"oba"},
+        {"id":"fam_itoko",     "front":"いとこ",     "frontSub":"従兄弟","back":"(my) cousin",        "backSub":"itoko"},
+        {"id":"fam_oi",        "front":"おい",       "frontSub":"甥",   "back":"(my) nephew",         "backSub":"oi"},
+        {"id":"fam_mei",       "front":"めい",       "frontSub":"姪",   "back":"(my) niece",          "backSub":"mei"}
+      ]
+    },
+    {
+      "name": "Someone Else's Family (respectful)",
+      "cards": [
+        {"id":"fam_otousan",   "front":"おとうさん", "frontSub":"お父さん","back":"(your/their) father",       "backSub":"otousan"},
+        {"id":"fam_okaasan",   "front":"おかあさん", "frontSub":"お母さん","back":"(your/their) mother",       "backSub":"okaasan"},
+        {"id":"fam_oniisan",   "front":"おにいさん", "frontSub":"お兄さん","back":"(your/their) elder brother","backSub":"oniisan"},
+        {"id":"fam_oneesan",   "front":"おねえさん", "frontSub":"お姉さん","back":"(your/their) elder sister", "backSub":"oneesan"},
+        {"id":"fam_otoutosan", "front":"おとうとさん","frontSub":"弟さん", "back":"(your/their) younger brother","backSub":"otoutosan"},
+        {"id":"fam_imoutosan", "front":"いもうとさん","frontSub":"妹さん", "back":"(your/their) younger sister","backSub":"imoutosan"},
+        {"id":"fam_dannasan",  "front":"だんなさん", "frontSub":"旦那さん","back":"(your/their) husband",      "backSub":"danna san"},
+        {"id":"fam_okusan",    "front":"おくさん",   "frontSub":"奥さん", "back":"(your/their) wife",         "backSub":"oku san"},
+        {"id":"fam_ojiisan",   "front":"おじいさん", "frontSub":"お祖父さん","back":"(your/their) grandfather","backSub":"ojiisan"},
+        {"id":"fam_obaasan",   "front":"おばあさん", "frontSub":"お祖母さん","back":"(your/their) grandmother","backSub":"obaasan"}
+      ]
+    }
+  ]
+}

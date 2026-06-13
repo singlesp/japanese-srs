@@ -1,0 +1,135 @@
+{
+  "id": "verbs",
+  "name": "Verbs",
+  "icon": "🗣️",
+  "source": "LESSON 5 Verbs and Conjugation v2.pdf",
+  "notes": "4 key conjugation forms drilled: polite present, polite negative, て-form, past casual",
+  "verb_types": {
+    "ru": "Ru-regular (Group II): drop る, add ending",
+    "u": "U-regular (Group I): change final syllable row",
+    "suru": "Irregular する compound",
+    "irreg": "Fully irregular"
+  },
+  "verbs": [
+    {
+      "id":"v_okiru",    "dict":"おきる",     "kanji":"起きる",   "english":"to get up / wake up",  "type":"ru",
+      "forms":{"masu":"おきます","masen":"おきません","te":"おきて","ta":"おきた"}
+    },
+    {
+      "id":"v_taberu",   "dict":"たべる",     "kanji":"食べる",   "english":"to eat",               "type":"ru",
+      "forms":{"masu":"たべます","masen":"たべません","te":"たべて","ta":"たべた"}
+    },
+    {
+      "id":"v_miru",     "dict":"みる",       "kanji":"見る",     "english":"to see / watch",       "type":"ru",
+      "forms":{"masu":"みます","masen":"みません","te":"みて","ta":"みた"}
+    },
+    {
+      "id":"v_neru",     "dict":"ねる",       "kanji":"寝る",     "english":"to sleep",             "type":"ru",
+      "forms":{"masu":"ねます","masen":"ねません","te":"ねて","ta":"ねた"}
+    },
+    {
+      "id":"v_deru",     "dict":"でる",       "kanji":"出る",     "english":"to go out / leave",    "type":"ru",
+      "forms":{"masu":"でます","masen":"でません","te":"でて","ta":"でた"}
+    },
+    {
+      "id":"v_hajimeru", "dict":"はじめる",   "kanji":"始める",   "english":"to begin / start",     "type":"ru",
+      "forms":{"masu":"はじめます","masen":"はじめません","te":"はじめて","ta":"はじめた"}
+    },
+    {
+      "id":"v_dekiru",   "dict":"できる",     "kanji":"出来る",   "english":"to be able to / can",  "type":"ru",
+      "forms":{"masu":"できます","masen":"できません","te":"できて","ta":"できた"}
+    },
+    {
+      "id":"v_ageru",    "dict":"あげる",     "kanji":"あげる",   "english":"to give",              "type":"ru",
+      "forms":{"masu":"あげます","masen":"あげません","te":"あげて","ta":"あげた"}
+    },
+    {
+      "id":"v_iku",      "dict":"いく",       "kanji":"行く",     "english":"to go",                "type":"u",
+      "forms":{"masu":"いきます","masen":"いきません","te":"いって","ta":"いった"},
+      "notes":"Irregular て/た form: いって not いいて"
+    },
+    {
+      "id":"v_kaeru",    "dict":"かえる",     "kanji":"帰る",     "english":"to return / go home",  "type":"u",
+      "forms":{"masu":"かえります","masen":"かえりません","te":"かえって","ta":"かえった"}
+    },
+    {
+      "id":"v_yomu",     "dict":"よむ",       "kanji":"読む",     "english":"to read",              "type":"u",
+      "forms":{"masu":"よみます","masen":"よみません","te":"よんで","ta":"よんだ"}
+    },
+    {
+      "id":"v_kiku",     "dict":"きく",       "kanji":"聞く",     "english":"to listen / hear",     "type":"u",
+      "forms":{"masu":"ききます","masen":"ききません","te":"きいて","ta":"きいた"}
+    },
+    {
+      "id":"v_hanasu",   "dict":"はなす",     "kanji":"話す",     "english":"to speak / talk",      "type":"u",
+      "forms":{"masu":"はなします","masen":"はなしません","te":"はなして","ta":"はなした"}
+    },
+    {
+      "id":"v_kaku",     "dict":"かく",       "kanji":"書く",     "english":"to write",             "type":"u",
+      "forms":{"masu":"かきます","masen":"かきません","te":"かいて","ta":"かいた"}
+    },
+    {
+      "id":"v_nomu",     "dict":"のむ",       "kanji":"飲む",     "english":"to drink",             "type":"u",
+      "forms":{"masu":"のみます","masen":"のみません","te":"のんで","ta":"のんだ"}
+    },
+    {
+      "id":"v_kau",      "dict":"かう",       "kanji":"買う",     "english":"to buy",               "type":"u",
+      "forms":{"masu":"かいます","masen":"かいません","te":"かって","ta":"かった"},
+      "notes":"う-ending verbs use わ row for negative base (かわない)"
+    },
+    {
+      "id":"v_matsu",    "dict":"まつ",       "kanji":"待つ",     "english":"to wait",              "type":"u",
+      "forms":{"masu":"まちます","masen":"まちません","te":"まって","ta":"まった"}
+    },
+    {
+      "id":"v_hashiru",  "dict":"はしる",     "kanji":"走る",     "english":"to run",               "type":"u",
+      "forms":{"masu":"はしります","masen":"はしりません","te":"はしって","ta":"はしった"}
+    },
+    {
+      "id":"v_hairu",    "dict":"はいる",     "kanji":"入る",     "english":"to enter",             "type":"u",
+      "forms":{"masu":"はいります","masen":"はいりません","te":"はいって","ta":"はいった"}
+    },
+    {
+      "id":"v_toru",     "dict":"とる",       "kanji":"取る",     "english":"to take",              "type":"u",
+      "forms":{"masu":"とります","masen":"とりません","te":"とって","ta":"とった"}
+    },
+    {
+      "id":"v_shiru",    "dict":"しる",       "kanji":"知る",     "english":"to know",              "type":"u",
+      "forms":{"masu":"しります","masen":"しりません","te":"しって","ta":"しった"}
+    },
+    {
+      "id":"v_asobu",    "dict":"あそぶ",     "kanji":"遊ぶ",     "english":"to play",              "type":"u",
+      "forms":{"masu":"あそびます","masen":"あそびません","te":"あそんで","ta":"あそんだ"}
+    },
+    {
+      "id":"v_noru",     "dict":"のる",       "kanji":"乗る",     "english":"to ride / get on",     "type":"u",
+      "forms":{"masu":"のります","masen":"のりません","te":"のって","ta":"のった"}
+    },
+    {
+      "id":"v_owaru",    "dict":"おわる",     "kanji":"終わる",   "english":"to finish / end",      "type":"u",
+      "forms":{"masu":"おわります","masen":"おわりません","te":"おわって","ta":"おわった"}
+    },
+    {
+      "id":"v_morau",    "dict":"もらう",     "kanji":"もらう",   "english":"to receive",           "type":"u",
+      "forms":{"masu":"もらいます","masen":"もらいません","te":"もらって","ta":"もらった"}
+    },
+    {
+      "id":"v_kuru",     "dict":"くる",       "kanji":"来る",     "english":"to come",              "type":"irreg",
+      "forms":{"masu":"きます","masen":"きません","te":"きて","ta":"きた"},
+      "notes":"Fully irregular — stem changes to き"
+    },
+    {
+      "id":"v_suru",     "dict":"する",       "kanji":"する",     "english":"to do",                "type":"irreg",
+      "forms":{"masu":"します","masen":"しません","te":"して","ta":"した"},
+      "notes":"Fully irregular — stem changes to し"
+    },
+    {
+      "id":"v_benkyousuru","dict":"べんきょうする","kanji":"勉強する","english":"to study",           "type":"suru",
+      "forms":{"masu":"べんきょうします","masen":"べんきょうしません","te":"べんきょうして","ta":"べんきょうした"}
+    },
+    {
+      "id":"v_ryourisuru","dict":"りょうりする", "kanji":"料理する","english":"to cook",             "type":"suru",
+      "forms":{"masu":"りょうりします","masen":"りょうりしません","te":"りょうりして","ta":"りょうりした"}
+    }
+  ]
+}

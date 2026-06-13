@@ -1,0 +1,214 @@
+{
+  "id": "recap_2026_06_11",
+  "name": "Class Recap — June 11",
+  "icon": "📅",
+  "date": "2026-06-11",
+  "next_class": "2026-06-18",
+  "teacher": "Atsuko T",
+  "homework": "Watch NHK Easy Japanese Lessons 4 & 5 at nhk.or.jp/nhkworld/lesson/en/lessons/",
+  "topics_covered": [
+    "Particle の (possessive & descriptive)",
+    "たい form — expressing want to do",
+    "Particle から — giving reasons",
+    "て-form + います — progressive/ongoing actions"
+  ],
+  "groups": [
+    {
+      "name": "Particle の",
+      "notes": "の connects two nouns: [A]の[B] = B that belongs to / is described by A",
+      "cards": [
+        {
+          "id": "recap_no_possessive",
+          "front": "わたしのはは",
+          "frontSub": "私の母",
+          "back": "my mother",
+          "backSub": "watashi no haha",
+          "notes": "の for possession: [owner] の [owned]"
+        },
+        {
+          "id": "recap_no_descriptive",
+          "front": "にほんじんのはは",
+          "frontSub": "",
+          "back": "Japanese mother",
+          "backSub": "nihonjin no haha",
+          "notes": "の as descriptor: [description] の [noun]"
+        }
+      ]
+    },
+    {
+      "name": "たい form — Want to",
+      "notes": "Group I (U-regular): i-form + たい | Group II (Ru-regular): drop る + たい. Add です for polite.",
+      "cards": [
+        {
+          "id": "recap_tai_intro",
+          "front": "〜たい / 〜たいです",
+          "frontSub": "",
+          "frontLabel": "What does this express?",
+          "back": "Want to [verb]",
+          "backSub": "",
+          "notes": "Gr. I: i-form + たい (いく→いきたい) | Gr. II: drop る + たい (たべる→たべたい)"
+        },
+        {
+          "id": "recap_tai_iku",
+          "front": "いく",
+          "frontSub": "to go",
+          "frontLabel": "→ want to go (polite)?",
+          "back": "いきたいです",
+          "backSub": "ikitai desu",
+          "notes": "Group I: i-form いき + たいです"
+        },
+        {
+          "id": "recap_tai_taberu",
+          "front": "たべる",
+          "frontSub": "to eat",
+          "frontLabel": "→ want to eat (polite)?",
+          "back": "たべたいです",
+          "backSub": "tabetai desu",
+          "notes": "Group II: drop る → たべ + たいです"
+        },
+        {
+          "id": "recap_tai_nomu",
+          "front": "のむ",
+          "frontSub": "to drink",
+          "frontLabel": "→ want to drink (polite)?",
+          "back": "のみたいです",
+          "backSub": "nomitai desu",
+          "notes": "Group I: i-form のみ + たいです"
+        },
+        {
+          "id": "recap_tai_miru",
+          "front": "みる",
+          "frontSub": "to see / watch",
+          "frontLabel": "→ want to see (polite)?",
+          "back": "みたいです",
+          "backSub": "mitai desu",
+          "notes": "Group II: drop る → み + たいです"
+        },
+        {
+          "id": "recap_tai_hanasu",
+          "front": "はなす",
+          "frontSub": "to speak",
+          "frontLabel": "→ want to speak (polite)?",
+          "back": "はなしたいです",
+          "backSub": "hanashitai desu",
+          "notes": "Group I: i-form はなし + たいです"
+        },
+        {
+          "id": "recap_tai_kuru",
+          "front": "くる",
+          "frontSub": "to come",
+          "frontLabel": "→ want to come (polite)?",
+          "back": "きたいです",
+          "backSub": "kitai desu",
+          "notes": "Irregular: くる → き + たいです"
+        }
+      ]
+    },
+    {
+      "name": "から — Giving Reasons",
+      "notes": "から after a clause means 'because'. The form before から depends on the word type.",
+      "cards": [
+        {
+          "id": "recap_kara_i_adj",
+          "front": "おもしろい + because (polite)",
+          "frontSub": "interesting",
+          "frontLabel": "→ because it is interesting?",
+          "back": "おもしろいからです",
+          "backSub": "omoshiroi kara desu",
+          "notes": "I-adjective: adjective directly + からです (no だ)"
+        },
+        {
+          "id": "recap_kara_na_adj",
+          "front": "きれい + because (polite)",
+          "frontSub": "beautiful / clean",
+          "frontLabel": "→ because it is beautiful?",
+          "back": "きれいだからです",
+          "backSub": "kirei da kara desu",
+          "notes": "Na-adjective: adjective + だからです"
+        },
+        {
+          "id": "recap_kara_verb_present",
+          "front": "いく + because (present, polite)",
+          "frontSub": "to go",
+          "frontLabel": "→ because I am going?",
+          "back": "いくからです",
+          "backSub": "iku kara desu",
+          "notes": "Verb (present/future): dictionary form + からです"
+        },
+        {
+          "id": "recap_kara_verb_past",
+          "front": "いった + because (past, polite)",
+          "frontSub": "went",
+          "frontLabel": "→ because I went?",
+          "back": "いったからです",
+          "backSub": "itta kara desu",
+          "notes": "Verb (past): た-form + からです"
+        }
+      ]
+    },
+    {
+      "name": "て-form + います — Progressive",
+      "notes": "Te-form + います = ongoing action or current status. Different from dictionary form, which implies future intent.",
+      "cards": [
+        {
+          "id": "recap_teiru_intro",
+          "front": "〜ています",
+          "frontSub": "",
+          "frontLabel": "What does this express?",
+          "back": "Ongoing action or current status",
+          "backSub": "",
+          "notes": "すむ = intend to live (future) | すんでいる = currently living (now)"
+        },
+        {
+          "id": "recap_teiru_sumu",
+          "front": "すむ",
+          "frontSub": "to live / reside",
+          "frontLabel": "→ is living (polite progressive)?",
+          "back": "すんでいます",
+          "backSub": "sunde imasu",
+          "notes": "すむ (U-reg, む ending) → すんで + います"
+        },
+        {
+          "id": "recap_teiru_taberu",
+          "front": "たべる",
+          "frontSub": "to eat",
+          "frontLabel": "→ is eating (polite progressive)?",
+          "back": "たべています",
+          "backSub": "tabete imasu",
+          "notes": "たべる (Ru-reg) → たべて + います"
+        },
+        {
+          "id": "recap_teiru_hanasu",
+          "front": "はなす",
+          "frontSub": "to speak",
+          "frontLabel": "→ is speaking (polite progressive)?",
+          "back": "はなしています",
+          "backSub": "hanashite imasu",
+          "notes": "はなす (U-reg, す ending) → はなして + います"
+        },
+        {
+          "id": "recap_teiru_yomu",
+          "front": "よむ",
+          "frontSub": "to read",
+          "frontLabel": "→ is reading (polite progressive)?",
+          "back": "よんでいます",
+          "backSub": "yonde imasu",
+          "notes": "よむ (U-reg, む ending) → よんで + います"
+        }
+      ]
+    },
+    {
+      "name": "New Vocabulary",
+      "cards": [
+        {
+          "id": "recap_vocab_sumu",
+          "front": "すむ",
+          "frontSub": "住む",
+          "back": "to live / to reside",
+          "backSub": "sumu",
+          "notes": "U-regular verb | て-form: すんで | progressive: すんでいます"
+        }
+      ]
+    }
+  ]
+}

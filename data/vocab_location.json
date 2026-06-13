@@ -1,0 +1,33 @@
+{
+  "id": "location",
+  "name": "Location Words",
+  "icon": "📍",
+  "source": "LESSON 4 - existence and location v.2.pdf",
+  "notes": "Used as: [reference point] の [location word] — e.g. えきのまえ = in front of the station",
+  "groups": [
+    {
+      "name": "Position Words",
+      "cards": [
+        {"id":"loc_migi",    "front":"みぎ",   "frontSub":"右",  "back":"right",         "backSub":"migi"},
+        {"id":"loc_hidari",  "front":"ひだり", "frontSub":"左",  "back":"left",          "backSub":"hidari"},
+        {"id":"loc_mae",     "front":"まえ",   "frontSub":"前",  "back":"in front of",   "backSub":"mae"},
+        {"id":"loc_ushiro",  "front":"うしろ", "frontSub":"後",  "back":"behind",        "backSub":"ushiro"},
+        {"id":"loc_naka",    "front":"なか",   "frontSub":"中",  "back":"inside",        "backSub":"naka"},
+        {"id":"loc_ue",      "front":"うえ",   "frontSub":"上",  "back":"above / on top","backSub":"ue"},
+        {"id":"loc_shita",   "front":"した",   "frontSub":"下",  "back":"below / under", "backSub":"shita"},
+        {"id":"loc_chikaku", "front":"ちかく", "frontSub":"近く","back":"near / nearby",  "backSub":"chikaku"},
+        {"id":"loc_soba",    "front":"そば",   "frontSub":"",    "back":"next to / beside","backSub":"soba"},
+        {"id":"loc_tonari",  "front":"となり", "frontSub":"隣",  "back":"next to (same category)","backSub":"tonari", "notes":"e.g. next door, neighbouring seat"},
+        {"id":"loc_yoko",    "front":"よこ",   "frontSub":"横",  "back":"beside (different category)","backSub":"yoko"},
+        {"id":"loc_aida",    "front":"あいだ", "frontSub":"間",  "back":"between",       "backSub":"aida"}
+      ]
+    },
+    {
+      "name": "Existence Verbs",
+      "cards": [
+        {"id":"exist_imasu",  "front":"います",  "frontSub":"",  "back":"to be / exist (people & animals)","backSub":"imasu",  "notes":"Use for living things"},
+        {"id":"exist_arimasu","front":"あります","frontSub":"",  "back":"to be / exist (non-living things)","backSub":"arimasu","notes":"Use for objects and places"}
+      ]
+    }
+  ]
+}

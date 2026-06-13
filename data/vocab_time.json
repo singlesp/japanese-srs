@@ -1,0 +1,66 @@
+{
+  "id": "time",
+  "name": "Time & Days",
+  "icon": "🕐",
+  "source": "Vocabulary 2 day week month year.pdf",
+  "groups": [
+    {
+      "name": "Days of the Week  (〜ようび)",
+      "cards": [
+        {"id":"day_nichi",  "front":"にちようび", "frontSub":"日曜日", "back":"Sunday",    "backSub":"nichi youbi",  "notes":"日 = sun"},
+        {"id":"day_getsu",  "front":"げつようび", "frontSub":"月曜日", "back":"Monday",    "backSub":"getsu youbi",  "notes":"月 = moon"},
+        {"id":"day_ka",     "front":"かようび",   "frontSub":"火曜日", "back":"Tuesday",   "backSub":"ka youbi",     "notes":"火 = fire (Mars)"},
+        {"id":"day_sui",    "front":"すいようび", "frontSub":"水曜日", "back":"Wednesday", "backSub":"sui youbi",    "notes":"水 = water (Mercury)"},
+        {"id":"day_moku",   "front":"もくようび", "frontSub":"木曜日", "back":"Thursday",  "backSub":"moku youbi",   "notes":"木 = tree (Jupiter)"},
+        {"id":"day_kin",    "front":"きんようび", "frontSub":"金曜日", "back":"Friday",    "backSub":"kin youbi",    "notes":"金 = gold (Venus)"},
+        {"id":"day_do",     "front":"どようび",   "frontSub":"土曜日", "back":"Saturday",  "backSub":"do youbi",     "notes":"土 = earth (Saturn)"}
+      ]
+    },
+    {
+      "name": "Seasons",
+      "cards": [
+        {"id":"season_haru", "front":"はる", "frontSub":"春", "back":"spring", "backSub":"haru"},
+        {"id":"season_natsu","front":"なつ", "frontSub":"夏", "back":"summer", "backSub":"natsu"},
+        {"id":"season_aki",  "front":"あき", "frontSub":"秋", "back":"autumn / fall", "backSub":"aki"},
+        {"id":"season_fuyu", "front":"ふゆ", "frontSub":"冬", "back":"winter", "backSub":"fuyu"}
+      ]
+    },
+    {
+      "name": "Relative Time — Days",
+      "cards": [
+        {"id":"rel_ototoi",  "front":"おととい", "frontSub":"一昨日", "back":"day before yesterday", "backSub":"ototoi"},
+        {"id":"rel_kinou",   "front":"きのう",   "frontSub":"昨日",   "back":"yesterday",            "backSub":"kinou"},
+        {"id":"rel_kyou",    "front":"きょう",   "frontSub":"今日",   "back":"today",                "backSub":"kyou"},
+        {"id":"rel_ashita",  "front":"あした",   "frontSub":"明日",   "back":"tomorrow",             "backSub":"ashita"},
+        {"id":"rel_asatte",  "front":"あさって", "frontSub":"明後日", "back":"day after tomorrow",   "backSub":"asatte"}
+      ]
+    },
+    {
+      "name": "Relative Time — Weeks",
+      "cards": [
+        {"id":"rel_senshuu",  "front":"せんしゅう", "frontSub":"先週", "back":"last week",  "backSub":"senshuu"},
+        {"id":"rel_konshuu",  "front":"こんしゅう", "frontSub":"今週", "back":"this week",  "backSub":"konshuu"},
+        {"id":"rel_raishuu",  "front":"らいしゅう", "frontSub":"来週", "back":"next week",  "backSub":"raishuu"}
+      ]
+    },
+    {
+      "name": "Relative Time — Months & Years",
+      "cards": [
+        {"id":"rel_sengetsu", "front":"せんげつ", "frontSub":"先月", "back":"last month",  "backSub":"sengetsu"},
+        {"id":"rel_kongetsu", "front":"こんげつ", "frontSub":"今月", "back":"this month",  "backSub":"kongetsu"},
+        {"id":"rel_raigetsu", "front":"らいげつ", "frontSub":"来月", "back":"next month",  "backSub":"raigetsu"},
+        {"id":"rel_kyonen",   "front":"きょねん", "frontSub":"去年", "back":"last year",   "backSub":"kyonen"},
+        {"id":"rel_kotoshi",  "front":"ことし",   "frontSub":"今年", "back":"this year",   "backSub":"kotoshi"},
+        {"id":"rel_rainen",   "front":"らいねん", "frontSub":"来年", "back":"next year",   "backSub":"rainen"}
+      ]
+    },
+    {
+      "name": "Times of Day",
+      "cards": [
+        {"id":"tod_kesa",    "front":"けさ",   "frontSub":"今朝", "back":"this morning", "backSub":"kesa"},
+        {"id":"tod_konban",  "front":"こんばん","frontSub":"今晩", "back":"this evening", "backSub":"konban"},
+        {"id":"tod_konya",   "front":"こんや", "frontSub":"今夜", "back":"tonight",      "backSub":"konya"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "countries",
+  "name": "Countries & Languages",
+  "icon": "🌍",
+  "source": "vocabulary 1 v2.pdf",
+  "groups": [
+    {
+      "name": "Countries",
+      "cards": [
+        {"id":"cty_america",    "front":"アメリカ",    "frontSub":"",   "back":"America / USA",   "backSub":"Amerika"},
+        {"id":"cty_igirisu",    "front":"イギリス",    "frontSub":"",   "back":"England / UK",    "backSub":"Igirisu"},
+        {"id":"cty_furansu",    "front":"フランス",    "frontSub":"",   "back":"France",          "backSub":"Furansu"},
+        {"id":"cty_doitsu",     "front":"ドイツ",      "frontSub":"",   "back":"Germany",         "backSub":"Doitsu"},
+        {"id":"cty_itaria",     "front":"イタリア",    "frontSub":"",   "back":"Italy",           "backSub":"Itaria"},
+        {"id":"cty_supein",     "front":"スペイン",    "frontSub":"",   "back":"Spain",           "backSub":"Supein"},
+        {"id":"cty_roshia",     "front":"ロシア",      "frontSub":"",   "back":"Russia",          "backSub":"Roshia"},
+        {"id":"cty_burajiru",   "front":"ブラジル",    "frontSub":"",   "back":"Brazil",          "backSub":"Burajiru"},
+        {"id":"cty_mekishiko",  "front":"メキシコ",    "frontSub":"",   "back":"Mexico",          "backSub":"Mekishiko"},
+        {"id":"cty_kanada",     "front":"カナダ",      "frontSub":"",   "back":"Canada",          "backSub":"Kanada"},
+        {"id":"cty_filipin",    "front":"フィリピン",  "frontSub":"",   "back":"Philippines",     "backSub":"Firipin"},
+        {"id":"cty_kankoku",    "front":"かんこく",    "frontSub":"韓国","back":"South Korea",    "backSub":"Kankoku"},
+        {"id":"cty_chuugoku",   "front":"ちゅうごく",  "frontSub":"中国","back":"China",          "backSub":"Chuugoku"},
+        {"id":"cty_nihon",      "front":"にほん",      "frontSub":"日本","back":"Japan",          "backSub":"Nihon"}
+      ]
+    },
+    {
+      "name": "Nationalities  (〜じん)",
+      "cards": [
+        {"id":"nat_amerikajin",  "front":"アメリカじん","frontSub":"アメリカ人","back":"American",   "backSub":"Amerikajin", "notes":"Country + じん = nationality"},
+        {"id":"nat_igirisujin",  "front":"イギリスじん","frontSub":"イギリス人","back":"British",    "backSub":"Igirisujin"},
+        {"id":"nat_furansujin",  "front":"フランスじん","frontSub":"フランス人","back":"French",     "backSub":"Furansujin"},
+        {"id":"nat_doitsujin",   "front":"ドイツじん",  "frontSub":"ドイツ人",  "back":"German",    "backSub":"Doitsujin"},
+        {"id":"nat_kankokujin",  "front":"かんこくじん","frontSub":"韓国人",    "back":"Korean",    "backSub":"Kankokujin"},
+        {"id":"nat_chuugokujin", "front":"ちゅうごくじん","frontSub":"中国人",  "back":"Chinese",   "backSub":"Chuugokujin"},
+        {"id":"nat_nihonjin",    "front":"にほんじん",  "frontSub":"日本人",    "back":"Japanese",  "backSub":"Nihonjin"}
+      ]
+    },
+    {
+      "name": "Languages  (〜ご)",
+      "cards": [
+        {"id":"lang_eigo",      "front":"えいご",      "frontSub":"英語",   "back":"English",          "backSub":"eigo",    "notes":"Irregular — not from country name"},
+        {"id":"lang_nihongo",   "front":"にほんご",    "frontSub":"日本語", "back":"Japanese (language)","backSub":"nihongo", "notes":"Country + ご = language"},
+        {"id":"lang_kankokugo", "front":"かんこくご",  "frontSub":"韓国語", "back":"Korean (language)", "backSub":"kankokugo"},
+        {"id":"lang_furansugo", "front":"フランスご",  "frontSub":"フランス語","back":"French (language)","backSub":"furansugo"},
+        {"id":"lang_doitsugo",  "front":"ドイツご",    "frontSub":"ドイツ語","back":"German (language)","backSub":"doitsugo"},
+        {"id":"lang_supeinogo", "front":"スペインご",  "frontSub":"スペイン語","back":"Spanish (language)","backSub":"supeingo"}
+      ]
+    }
+  ]
+}

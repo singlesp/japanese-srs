@@ -1,0 +1,58 @@
+{
+  "id": "pronouns_demonstratives",
+  "name": "Pronouns & Demonstratives",
+  "icon": "👤",
+  "source": "vocabulary 1 v2.pdf",
+  "groups": [
+    {
+      "name": "Personal Pronouns",
+      "cards": [
+        {"id":"pron_watashi",      "front":"わたし",       "frontSub":"私",    "back":"I / me",          "backSub":"watashi"},
+        {"id":"pron_watashitachi", "front":"わたしたち",   "frontSub":"私たち","back":"we / us",          "backSub":"watashi tachi"},
+        {"id":"pron_anata",        "front":"あなた",       "frontSub":"",      "back":"you",             "backSub":"anata"},
+        {"id":"pron_anatatachi",   "front":"あなたたち",   "frontSub":"",      "back":"you (plural)",    "backSub":"anata tachi"},
+        {"id":"pron_kare",         "front":"かれ",         "frontSub":"彼",    "back":"he / him",        "backSub":"kare",  "notes":"More common in writing; use name or あのひと in speech"},
+        {"id":"pron_kanojo",       "front":"かのじょ",     "frontSub":"彼女",  "back":"she / her",       "backSub":"kanojo","notes":"Also means 'girlfriend' in casual speech"},
+        {"id":"pron_karera",       "front":"かれら",       "frontSub":"彼ら",  "back":"they (mixed/male)","backSub":"karera"},
+        {"id":"pron_kanojotachi",  "front":"かのじょたち", "frontSub":"彼女たち","back":"they (female)",  "backSub":"kanojo tachi"}
+      ]
+    },
+    {
+      "name": "Possessive Pronouns",
+      "cards": [
+        {"id":"poss_watashino",    "front":"わたしの",     "frontSub":"私の",   "back":"my / mine",       "backSub":"watashi no"},
+        {"id":"poss_anatano",      "front":"あなたの",     "frontSub":"",       "back":"your / yours",    "backSub":"anata no"},
+        {"id":"poss_kareno",       "front":"かれの",       "frontSub":"彼の",   "back":"his",             "backSub":"kare no"},
+        {"id":"poss_kanojono",     "front":"かのじょの",   "frontSub":"彼女の", "back":"her / hers",      "backSub":"kanojo no"},
+        {"id":"poss_watashitachino","front":"わたしたちの","frontSub":"私たちの","back":"our / ours",      "backSub":"watashi tachi no"}
+      ]
+    },
+    {
+      "name": "Demonstratives — Things",
+      "cards": [
+        {"id":"demo_kore",  "front":"これ", "frontSub":"", "back":"this (near speaker)",   "backSub":"kore"},
+        {"id":"demo_sore",  "front":"それ", "frontSub":"", "back":"that (near listener)",  "backSub":"sore"},
+        {"id":"demo_are",   "front":"あれ", "frontSub":"", "back":"that (far from both)",  "backSub":"are"},
+        {"id":"demo_dore",  "front":"どれ", "frontSub":"", "back":"which one?",            "backSub":"dore"}
+      ]
+    },
+    {
+      "name": "Demonstratives — Noun Modifiers",
+      "cards": [
+        {"id":"demo_kono",  "front":"この", "frontSub":"", "back":"this [noun]",           "backSub":"kono", "notes":"Must be followed by a noun"},
+        {"id":"demo_sono",  "front":"その", "frontSub":"", "back":"that [noun]",           "backSub":"sono"},
+        {"id":"demo_ano",   "front":"あの", "frontSub":"", "back":"that [noun] (far)",     "backSub":"ano"},
+        {"id":"demo_dono",  "front":"どの", "frontSub":"", "back":"which [noun]?",         "backSub":"dono"}
+      ]
+    },
+    {
+      "name": "Demonstratives — Places",
+      "cards": [
+        {"id":"demo_koko",   "front":"ここ",   "frontSub":"", "back":"here",       "backSub":"koko"},
+        {"id":"demo_soko",   "front":"そこ",   "frontSub":"", "back":"there",      "backSub":"soko"},
+        {"id":"demo_asoko",  "front":"あそこ", "frontSub":"", "back":"over there", "backSub":"asoko"},
+        {"id":"demo_doko",   "front":"どこ",   "frontSub":"", "back":"where?",     "backSub":"doko"}
+      ]
+    }
+  ]
+}
