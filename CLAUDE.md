@@ -179,8 +179,9 @@ New/unseen cards have `reps=0` and `due=0` (always due). Sessions batch up to 20
 |-----------|-------------|
 | `screen-intro` | Landing page, shown once (flag: `jp_srs_intro_seen` in localStorage) |
 | `screen-home` | Deck list with stats and recap banners |
-| `screen-study` | Active card session |
+| `screen-study` | Active card session (also used for single-card practice via `practiceCard`) |
 | `screen-complete` | Session summary |
+| `screen-browse` | Browse all cards in one deck; reveal-on-tap answers, per-card status, single-card practice. Reached via the ☰ button on a deck/recap or by tapping a search result (which deep-links to the exact card via `openBrowse(deckId, cardId)`). |
 
 Navigation is purely JS (`showScreen(id)`). No routing library.
 

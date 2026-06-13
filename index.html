@@ -153,6 +153,50 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
 .deck-due.no-due  { background:#f1f5f9; color:var(--gray); }
 .progress-bar { height:4px; background:var(--border); border-radius:2px; margin-top:6px; }
 .progress-fill { height:100%; border-radius:2px; background:var(--green); transition:width 0.4s; }
+.deck-browse { flex-shrink:0; background:var(--bg); border:1.5px solid var(--border);
+  color:var(--gray); border-radius:9px; padding:7px 10px; cursor:pointer; font-size:0.9rem;
+  font-family:var(--ui); line-height:1; transition:background 0.1s, color 0.1s, border-color 0.1s; }
+.deck-browse:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+.rb-browse { margin-top:12px; display:inline-block; background:rgba(255,255,255,0.16); color:#fff;
+  border:none; border-radius:8px; padding:7px 13px; font-family:var(--ui); font-size:0.72rem;
+  font-weight:600; cursor:pointer; transition:background 0.1s; }
+.rb-browse:hover { background:rgba(255,255,255,0.28); }
+
+/* ── Browse screen ────────────────────────────────────────────── */
+.browse-head-bar { margin-bottom:6px; }
+.browse-title { font-family:var(--jp); font-size:1.2rem; font-weight:700; color:var(--navy); }
+.browse-sub { font-size:0.78rem; color:var(--gray); margin-top:3px; }
+.browse-hint { font-size:0.73rem; color:var(--gray); margin:10px 0 16px; }
+.browse-list { display:flex; flex-direction:column; gap:8px; margin-bottom:32px; }
+.browse-row { background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow);
+  border:1.5px solid transparent; overflow:hidden; transition:border-color 0.12s, box-shadow 0.12s; }
+.browse-row.focus { border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(69,123,157,0.18), var(--shadow); }
+.browse-headrow { display:flex; align-items:center; gap:12px; padding:13px 15px; cursor:pointer; }
+.browse-headrow:hover { background:var(--bg); }
+.browse-main { flex:1; min-width:0; }
+.browse-label { font-size:0.66rem; color:var(--blue); font-weight:600; margin-bottom:3px; }
+.browse-front { font-family:var(--jp); font-size:1.1rem; font-weight:700; color:var(--navy);
+  word-break:break-all; }
+.browse-front .browse-fsub { font-size:0.78rem; color:var(--gray); font-weight:400; margin-left:8px; }
+.browse-status { flex-shrink:0; font-size:0.62rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.03em; padding:3px 8px; border-radius:20px; }
+.browse-status.s-new    { background:#f1f5f9; color:var(--gray); }
+.browse-status.s-due    { background:#fee2e2; color:var(--red); }
+.browse-status.s-learn  { background:#e0ecf3; color:var(--blue); }
+.browse-status.s-master { background:#d1fae5; color:var(--green); }
+.browse-chev { flex-shrink:0; color:var(--gray); font-size:0.75rem; transition:transform 0.15s; }
+.browse-row.open .browse-chev { transform:rotate(90deg); }
+.browse-answer { display:none; padding:0 15px 14px; }
+.browse-row.open .browse-answer { display:block; }
+.browse-answer-inner { border-top:1px solid var(--border); padding-top:12px; }
+.browse-back { font-family:var(--jp); font-size:1rem; color:var(--green); font-weight:700; }
+.browse-back .browse-bsub { color:var(--gray); font-size:0.8rem; font-weight:400; margin-left:8px; }
+.browse-notes { font-size:0.72rem; color:var(--gray); font-style:italic; margin-top:6px; line-height:1.4; }
+.browse-practice { margin-top:12px; width:100%; padding:11px; border-radius:10px; border:none;
+  background:var(--navy); color:#fff; font-family:var(--ui); font-weight:600; font-size:0.85rem;
+  cursor:pointer; transition:background 0.1s; }
+.browse-practice:hover { background:#2d2d4e; }
 
 /* ── Progress tools ───────────────────────────────────────────── */
 .progress-tools { background:var(--surface); border-radius:var(--radius);
@@ -400,6 +444,20 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
     <button class="btn btn-primary btn-full" onclick="goHome()">Back to Decks</button>
   </div>
 
+  <!-- ── BROWSE ─────────────────────────────────────────────────── -->
+  <div id="screen-browse" class="screen">
+    <div class="header">
+      <button class="btn-back" onclick="goHome()">← Home</button>
+      <button class="btn-back" onclick="practiceBrowseDeck()" style="font-size:0.75rem">Study deck →</button>
+    </div>
+    <div class="browse-head-bar">
+      <div class="browse-title" id="browse-title"></div>
+      <div class="browse-sub" id="browse-sub"></div>
+    </div>
+    <div class="browse-hint">Tap any card to reveal its answer, then practice it on its own.</div>
+    <div class="browse-list" id="browse-list"></div>
+  </div>
+
 </div>
 <script>
 // ================================================================
@@ -538,7 +596,10 @@ function renderHome() {
           (s.due > 0 ? ' · <span style="color:#a7f3d0">' + s.due + ' due</span>' : '') +
         '</h3>' +
         '<div class="rb-topics">' + topics + '</div>' +
-        hwHtml;
+        hwHtml +
+        '<button class="rb-browse">☰ Browse cards</button>';
+      const rbBtn = div.querySelector('.rb-browse');
+      if (rbBtn) rbBtn.addEventListener('click', function(e) { e.stopPropagation(); openBrowse(rid); });
       recapEl.appendChild(div);
     }
   }
@@ -571,7 +632,10 @@ function renderDeckList(containerId, deckIds) {
         '<div class="deck-meta">' + deck.cards.length + ' cards · ' + s.mastered + ' mastered</div>' +
         '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
       '</div>' +
-      '<div class="deck-due ' + dueClass + '">' + dueLabel + '</div>';
+      '<div class="deck-due ' + dueClass + '">' + dueLabel + '</div>' +
+      '<button class="deck-browse" title="Browse cards">☰</button>';
+    const browseBtn = div.querySelector('.deck-browse');
+    if (browseBtn) browseBtn.addEventListener('click', function(e) { e.stopPropagation(); openBrowse(id); });
     el.appendChild(div);
   }
 }
@@ -584,6 +648,7 @@ const SEARCH_INDEX = DECKS.flatMap(function(d) {
   return d.cards.map(function(c) {
     const parts = [c.front, c.frontSub, c.frontLabel, c.back, c.backSub, c.notes, d.name];
     return {
+      cardId:    c.id,
       deckId:    d.id,
       deckName:  d.name,
       deckIcon:  d.icon,
@@ -635,7 +700,7 @@ function runSearch(raw) {
       const fsub  = r.frontSub  ? '<span class="sr-fsub">'  + escHtml(r.frontSub)  + '</span>' : '';
       const bsub  = r.backSub   ? '<span class="sr-bsub">'  + escHtml(r.backSub)   + '</span>' : '';
       html +=
-        '<div class="sr-card" data-deck="' + escHtml(r.deckId) + '">' +
+        '<div class="sr-card" data-deck="' + escHtml(r.deckId) + '" data-card="' + escHtml(r.cardId) + '">' +
           '<div class="sr-top">' +
             '<span class="sr-deck">' + r.deckIcon + ' ' + escHtml(r.deckName) + '</span>' +
             label +
@@ -648,13 +713,13 @@ function runSearch(raw) {
   resultsEl.innerHTML = html;
 }
 
-// Delegated click: tapping a result jumps into that card's deck.
+// Delegated click: tapping a result opens that exact card in browse view.
 function initSearchClicks() {
   const resultsEl = document.getElementById('search-results');
   if (!resultsEl) return;
   resultsEl.addEventListener('click', function(e) {
     const card = e.target.closest('.sr-card');
-    if (card && card.dataset.deck) startSession(card.dataset.deck);
+    if (card && card.dataset.deck) openBrowse(card.dataset.deck, card.dataset.card);
   });
 }
 
@@ -674,6 +739,93 @@ function resetSearch() {
   if (resultsEl) { resultsEl.classList.remove("active"); resultsEl.innerHTML = ""; }
   const bodyEl = document.getElementById("home-body");
   if (bodyEl) bodyEl.style.display = "";
+}
+
+// ================================================================
+// BROWSE
+// ================================================================
+let browseState = { deckId: null, focusCardId: null };
+
+function cardStatus(p) {
+  if (p.reps === 0)      return { cls:'s-new',    txt:'New' };
+  if (p.interval >= 21)  return { cls:'s-master', txt:'Mastered' };
+  return isDue(p) ? { cls:'s-due', txt:'Due' } : { cls:'s-learn', txt:'Learning' };
+}
+
+function openBrowse(deckId, focusCardId) {
+  browseState = { deckId: deckId, focusCardId: focusCardId || null };
+  renderBrowse();
+  showScreen('browse');
+}
+
+function practiceBrowseDeck() {
+  if (browseState.deckId) startSession(browseState.deckId);
+}
+
+function renderBrowse() {
+  const deck = DECKS.find(function(d) { return d.id === browseState.deckId; });
+  if (!deck) { goHome(); return; }
+  document.getElementById('browse-title').textContent = deck.icon + '  ' + deck.name;
+  const s = deckStats(deck.id);
+  document.getElementById('browse-sub').textContent =
+    deck.cards.length + ' cards · ' + s.due + ' due · ' + s.mastered + ' mastered';
+
+  const listEl = document.getElementById('browse-list');
+  listEl.innerHTML = '';
+  let focusEl = null;
+  for (const c of deck.cards) {
+    const st    = cardStatus(getCard(progress, c.id));
+    const label = c.frontLabel ? '<div class="browse-label">' + escHtml(c.frontLabel) + '</div>' : '';
+    const fsub  = c.frontSub   ? '<span class="browse-fsub">' + escHtml(c.frontSub) + '</span>' : '';
+    const bsub  = c.backSub    ? '<span class="browse-bsub">' + escHtml(c.backSub) + '</span>' : '';
+    const notes = c.notes      ? '<div class="browse-notes">' + escHtml(c.notes) + '</div>' : '';
+    const row   = document.createElement('div');
+    row.className = 'browse-row';
+    row.dataset.card = c.id;
+    row.innerHTML =
+      '<div class="browse-headrow">' +
+        '<div class="browse-main">' + label +
+          '<div class="browse-front">' + escHtml(c.front) + fsub + '</div>' +
+        '</div>' +
+        '<span class="browse-status ' + st.cls + '">' + st.txt + '</span>' +
+        '<span class="browse-chev">▶</span>' +
+      '</div>' +
+      '<div class="browse-answer"><div class="browse-answer-inner">' +
+        '<div class="browse-back">' + escHtml(c.back) + bsub + '</div>' + notes +
+        '<button class="browse-practice">Practice this card ▶</button>' +
+      '</div></div>';
+    listEl.appendChild(row);
+    if (browseState.focusCardId && c.id === browseState.focusCardId) focusEl = row;
+  }
+
+  if (focusEl) {
+    focusEl.classList.add('open', 'focus');
+    setTimeout(function() { focusEl.scrollIntoView({ behavior:'smooth', block:'center' }); }, 60);
+  }
+}
+
+// Delegated clicks on the browse list: toggle reveal, or practice one card.
+function initBrowseClicks() {
+  const listEl = document.getElementById('browse-list');
+  if (!listEl) return;
+  listEl.addEventListener('click', function(e) {
+    const row = e.target.closest('.browse-row');
+    if (!row) return;
+    if (e.target.closest('.browse-practice')) { practiceCard(row.dataset.card); return; }
+    row.classList.toggle('open');
+    row.classList.remove('focus');
+  });
+}
+
+function practiceCard(cardId) {
+  const card = allCards().find(function(c) { return c.id === cardId; });
+  if (!card) return;
+  browseState.focusCardId = cardId;
+  session = { deckIds:['__single__'], queue:[card], idx:0, flipped:false, revealed:false,
+              stats:{0:0,1:0,2:0,3:0}, returnTo:'browse' };
+  document.getElementById('sess-deck-name').textContent = 'Single-card practice';
+  showScreen('study');
+  renderCard();
 }
 
 // ================================================================
@@ -772,8 +924,10 @@ function rateCard(rating) {
   session.stats[rating]++;
   if (rating === 0) session.queue.push(card);
   session.idx++;
-  if (session.idx >= session.queue.length) showComplete();
-  else renderCard();
+  if (session.idx >= session.queue.length) {
+    if (session.returnTo === 'browse') { renderBrowse(); showScreen('browse'); }
+    else showComplete();
+  } else renderCard();
 }
 
 function showComplete() {
@@ -834,6 +988,7 @@ function shuffle(arr) {
 // INIT
 // ================================================================
 initSearchClicks();
+initBrowseClicks();
 if (localStorage.getItem(SEEN_INTRO_KEY)) {
   renderHome();
   showScreen('home');
