@@ -51,7 +51,7 @@ User progress is stored as `{ [cardId]: { interval, ef, reps, due } }`. If a car
 ### ID conventions
 
 Auto-generated (safe to leave alone):
-- `adj_<hiragana>` — adjective vocab cards
+- `adj_<hiragana>` — adjective vocab cards. **Homophones** (same hiragana, different kanji — e.g. あつい = 厚い/暑い/熱い) are disambiguated with a kanji suffix (`adj_あつい_厚い`) by `adj_safe_id()`; non-colliding words keep the bare `adj_<hiragana>` form. Without this, the three あつい would share one localStorage progress key.
 - `vvoc_<verb_id>` — verb vocabulary cards
 - `vconj_<verb_id>_<form>` — verb conjugation (form = masu/masen/te/ta)
 - `adjconj_<type>_<hiragana>_<form>` — adjective conjugation

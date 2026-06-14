@@ -87,11 +87,34 @@ for d in [pronouns, countries, family, occs, time_v, location]:
     })
 
 # 2. Adjective vocab decks
+def _safe(s):
+    return s.replace(' ', '_').replace('/', '_')
+
+def _dup_hiragana(cat):
+    """Hiragana that appear more than once in a category (homophones).
+
+    e.g. あつい = 厚い / 暑い / 熱い.  Their IDs must be disambiguated by kanji,
+    otherwise they collide on a single localStorage progress key.
+    """
+    counts = {}
+    for w in cat['words']:
+        counts[w['hiragana']] = counts.get(w['hiragana'], 0) + 1
+    return {h for h, n in counts.items() if n > 1}
+
+def adj_safe_id(w, dup_hira):
+    """Stable per-word id fragment; only homophones get a kanji suffix, so
+    every non-colliding adjective keeps its original id (progress preserved)."""
+    base = _safe(w['hiragana'])
+    if w['hiragana'] in dup_hira:
+        base += '_' + _safe(w['kanji'])
+    return base
+
 def adj_cards(cat):
     cards = []
+    dup = _dup_hiragana(cat)
     for w in cat['words']:
         cards.append({
-            'id':         f"adj_{w['hiragana'].replace(' ','_').replace('/','_')}",
+            'id':         f"adj_{adj_safe_id(w, dup)}",
             'front':      w['hiragana'],
             'frontSub':   w['kanji'] if w['kanji'] != w['hiragana'] else '',
             'frontLabel': '',
@@ -211,6 +234,7 @@ def make_adj_conj_cards(adj_type, form_key, question, rule_i, rule_na):
     for cat in adj_data['categories']:
         if cat['type'] != adj_type:
             continue
+        dup = _dup_hiragana(cat)
         for w in cat['words']:
             hira = w['hiragana']
             eng  = w['english']
@@ -224,7 +248,7 @@ def make_adj_conj_cards(adj_type, form_key, question, rule_i, rule_na):
                 primary = hira.split('/')[0].strip()
                 answer = {'neg_pol': primary+'ではありません','past_pol': primary+'でした'}.get(form_key,'?')
                 rule   = rule_na
-            safe_id = hira.replace(' ','_').replace('/','_')
+            safe_id = adj_safe_id(w, dup)
             cards.append({
                 'id':         f"adjconj_{adj_type}_{safe_id}_{form_key}",
                 'front':      hira,
