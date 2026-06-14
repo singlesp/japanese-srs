@@ -393,6 +393,26 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
 .sr-empty { text-align:center; color:var(--gray); font-size:0.88rem; padding:28px 16px;
   background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow); }
 
+/* ── Favorites banner ─────────────────────────────────────────── */
+.fav-banner { background:linear-gradient(135deg,#e9c46a,#e76f51); color:#fff;
+  border-radius:var(--radius); padding:16px 22px; display:flex; align-items:center;
+  justify-content:space-between; margin-bottom:28px; box-shadow:var(--shadow-lg);
+  cursor:pointer; transition:transform 0.1s; }
+.fav-banner:hover { transform:translateY(-1px); }
+.fav-banner .label { font-size:0.8rem; opacity:0.9; margin-bottom:2px; }
+.fav-banner .count { font-size:1.4rem; font-weight:700; }
+.fav-banner .arrow { font-size:1.3rem; opacity:0.9; }
+
+/* ── Star buttons ─────────────────────────────────────────────── */
+.star-btn { background:none; border:none; cursor:pointer; font-size:1.4rem; line-height:1;
+  color:var(--gray); padding:2px 6px; transition:color 0.1s, transform 0.1s; }
+.star-btn:hover { transform:scale(1.15); }
+.star-btn.active { color:var(--yellow); }
+.browse-star { background:none; border:none; cursor:pointer; font-size:1.15rem; line-height:1;
+  color:var(--gray); padding:0 2px; flex-shrink:0; transition:color 0.1s, transform 0.1s; }
+.browse-star:hover { transform:scale(1.15); }
+.browse-star.active { color:var(--yellow); }
+
 /* ── Study-all banner ─────────────────────────────────────────── */
 .study-all-banner { background:var(--navy); color:#fff; border-radius:var(--radius);
   padding:18px 22px; display:flex; align-items:center; justify-content:space-between;
@@ -479,10 +499,47 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
 .browse-back { font-family:var(--jp); font-size:1rem; color:var(--green); font-weight:700; }
 .browse-back .browse-bsub { color:var(--gray); font-size:0.8rem; font-weight:400; margin-left:8px; }
 .browse-notes { font-size:0.72rem; color:var(--gray); font-style:italic; margin-top:6px; line-height:1.4; }
-.browse-practice { margin-top:12px; width:100%; padding:11px; border-radius:10px; border:none;
+.browse-actions { display:flex; gap:8px; margin-top:12px; }
+.browse-practice { flex:1; padding:11px; border-radius:10px; border:none;
   background:var(--navy); color:#fff; font-family:var(--ui); font-weight:600; font-size:0.85rem;
   cursor:pointer; transition:background 0.1s; }
 .browse-practice:hover { background:#2d2d4e; }
+.browse-report { flex-shrink:0; padding:11px 14px; border-radius:10px; border:1.5px solid var(--border);
+  background:var(--surface); color:var(--gray); font-family:var(--ui); font-weight:600;
+  font-size:0.85rem; cursor:pointer; transition:background 0.1s, color 0.1s, border-color 0.1s; }
+.browse-report:hover { background:var(--bg); color:var(--red); border-color:var(--red); }
+
+/* ── Study report link ────────────────────────────────────────── */
+.session-right { display:flex; align-items:center; gap:8px; }
+.study-report { display:block; margin:14px auto 0; background:none; border:none; cursor:pointer;
+  color:var(--gray); font-family:var(--ui); font-size:0.74rem; text-decoration:underline; }
+.study-report:hover { color:var(--red); }
+
+/* ── Report modal ─────────────────────────────────────────────── */
+.modal-overlay { position:fixed; inset:0; background:rgba(26,26,46,0.55); display:flex;
+  align-items:center; justify-content:center; padding:20px; z-index:50; }
+.modal { background:var(--surface); border-radius:18px; box-shadow:var(--shadow-lg);
+  width:100%; max-width:420px; padding:24px; }
+.modal-title { font-size:1.1rem; font-weight:700; color:var(--navy); margin-bottom:14px; }
+.modal-card { background:var(--bg); border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+.modal-card .rc-deck { font-size:0.68rem; color:var(--gray); text-transform:uppercase;
+  letter-spacing:0.04em; margin-bottom:5px; }
+.modal-card .rc-front { font-family:var(--jp); font-size:1.05rem; font-weight:700; color:var(--navy); }
+.modal-card .rc-front span { font-size:0.72rem; color:var(--blue); font-weight:600; margin-left:6px; }
+.modal-card .rc-back { font-family:var(--jp); font-size:0.9rem; color:var(--green); margin-top:4px; }
+.modal-textarea { width:100%; min-height:90px; border:1.5px solid var(--border); border-radius:10px;
+  padding:11px 13px; font-family:var(--ui); font-size:0.88rem; color:var(--navy); resize:vertical;
+  outline:none; }
+.modal-textarea:focus { border-color:var(--blue); }
+.modal-actions { display:flex; gap:10px; margin-top:16px; }
+.btn-modal-cancel { flex:1; padding:12px; border-radius:10px; border:1.5px solid var(--border);
+  background:var(--surface); color:var(--navy); font-family:var(--ui); font-weight:600;
+  font-size:0.88rem; cursor:pointer; }
+.btn-modal-cancel:hover { background:var(--bg); }
+.btn-modal-send { flex:1; padding:12px; border-radius:10px; border:none; background:var(--navy);
+  color:#fff; font-family:var(--ui); font-weight:600; font-size:0.88rem; cursor:pointer; }
+.btn-modal-send:hover { background:#2d2d4e; }
+.modal-note { font-size:0.72rem; color:var(--gray); margin-top:12px; text-align:center; line-height:1.4; }
 
 /* ── Progress tools ───────────────────────────────────────────── */
 .progress-tools { background:var(--surface); border-radius:var(--radius);
@@ -640,6 +697,14 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
       <div class="arrow">→</div>
     </div>
 
+    <div class="fav-banner" onclick="openBrowse('__favs__')">
+      <div>
+        <div class="label">★ Favorites</div>
+        <div class="count" id="fav-count">—</div>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+
     <div class="recap-section" id="recap-section"></div>
 
     <div class="section-title">Vocabulary</div>
@@ -660,7 +725,7 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
           <input type="file" accept=".json" onchange="importProgress(event)" style="display:none">
         </label>
       </div>
-      <p class="progress-note">Your progress is automatically saved in this browser. Export / Import is only needed to back up your data or move to a different browser or device.</p>
+      <p class="progress-note">Your progress and favorites are automatically saved in this browser. Export / Import is only needed to back up your data or move to a different browser or device.</p>
     </div>
     </div><!-- /#home-body -->
   </div>
@@ -676,7 +741,10 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
     </div>
     <div class="session-header">
       <div class="session-progress" id="sess-progress">Card 1 of 1</div>
-      <div style="font-size:0.78rem;color:var(--gray)" id="sess-deck-name"></div>
+      <div class="session-right">
+        <span style="font-size:0.78rem;color:var(--gray)" id="sess-deck-name"></span>
+        <button class="star-btn" id="study-star" onclick="toggleStudyStar()" title="Add to favorites">☆</button>
+      </div>
     </div>
     <div class="card-area" onclick="flipCard()">
       <div class="card-inner" id="card-inner">
@@ -709,6 +777,7 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
       <div class="int-hint" id="ih-easy"></div>
     </div>
     <button class="btn-flip" id="btn-flip" onclick="flipCard()">Flip Card ↓</button>
+    <button class="study-report" onclick="reportCurrentCard()">⚐ Report an issue with this card</button>
   </div>
 
   <!-- ── COMPLETE ───────────────────────────────────────────────── -->
@@ -734,7 +803,7 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
   <div id="screen-browse" class="screen">
     <div class="header">
       <button class="btn-back" onclick="goHome()">← Home</button>
-      <button class="btn-back" onclick="practiceBrowseDeck()" style="font-size:0.75rem">Study deck →</button>
+      <button class="btn-back" id="browse-study-btn" onclick="practiceBrowseDeck()" style="font-size:0.75rem">Study deck →</button>
     </div>
     <div class="browse-head-bar">
       <div class="browse-title" id="browse-title"></div>
@@ -742,6 +811,20 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
     </div>
     <div class="browse-hint">Tap any card to reveal its answer, then practice it on its own.</div>
     <div class="browse-list" id="browse-list"></div>
+  </div>
+
+  <!-- ── REPORT MODAL ───────────────────────────────────────────── -->
+  <div id="report-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeReportModal()">
+    <div class="modal">
+      <div class="modal-title">Report an issue</div>
+      <div class="modal-card" id="report-card-info"></div>
+      <textarea id="report-note" class="modal-textarea" placeholder="What looks wrong? (optional) — e.g. wrong conjugation, typo, or translation"></textarea>
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeReportModal()">Cancel</button>
+        <button class="btn-modal-send" onclick="sendReport()">Send email ✉</button>
+      </div>
+      <div class="modal-note">This opens your email app with the card details filled in, ready to send.</div>
+    </div>
   </div>
 
 </div>
@@ -797,20 +880,41 @@ function isDue(card) { return card.due <= Date.now(); }
 let progress = loadProgress();
 let session  = { deckIds:[], queue:[], idx:0, flipped:false, stats:{0:0,1:0,2:0,3:0} };
 
+// ── Favorites ─────────────────────────────────────────────────
+const FAV_KEY = 'jp_srs_favs_v1';
+function loadFavs() {
+  try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY)) || []); }
+  catch(e) { return new Set(); }
+}
+function saveFavs(set) { localStorage.setItem(FAV_KEY, JSON.stringify([...set])); }
+let favs = loadFavs();
+function isFav(id) { return favs.has(id); }
+function toggleFav(id) {
+  if (favs.has(id)) favs.delete(id); else favs.add(id);
+  saveFavs(favs);
+}
+
 // ================================================================
 // DECK HELPERS
 // ================================================================
 function allCards() { return DECKS.flatMap(d => d.cards); }
+function favCards() { return allCards().filter(c => isFav(c.id)); }
+function resolveCards(deckId) {
+  if (deckId === '__all__')  return allCards();
+  if (deckId === '__favs__') return favCards();
+  const d = DECKS.find(x => x.id === deckId);
+  return d ? d.cards : [];
+}
 function cardsForDecks(deckIds) {
-  if (deckIds[0] === '__all__') return allCards();
+  if (deckIds[0] === '__all__')  return allCards();
+  if (deckIds[0] === '__favs__') return favCards();
   return DECKS.filter(d => deckIds.includes(d.id)).flatMap(d => d.cards);
 }
 function dueCards(deckIds) {
   return cardsForDecks(deckIds).filter(c => isDue(getCard(progress, c.id)));
 }
 function deckStats(deckId) {
-  const cards = deckId === '__all__' ? allCards()
-    : (DECKS.find(d => d.id === deckId) || {cards:[]}).cards;
+  const cards = resolveCards(deckId);
   let due=0, learning=0, mastered=0;
   for (const c of cards) {
     const p = getCard(progress, c.id);
@@ -852,6 +956,10 @@ function renderHome() {
   document.getElementById('home-mastered').textContent = all.mastered;
   document.getElementById('home-due-banner').textContent =
     all.due > 0 ? all.due + ' cards due' : 'All caught up! 🌸';
+
+  const favN = favCards().length;
+  document.getElementById('fav-count').textContent =
+    favN > 0 ? (favN + (favN === 1 ? ' card' : ' cards')) : 'No favorites yet';
 
   // Recap banners
   const recapEl = document.getElementById('recap-section');
@@ -1048,19 +1156,38 @@ function practiceBrowseDeck() {
   if (browseState.deckId) startSession(browseState.deckId);
 }
 
+function browseDeckView(deckId) {
+  if (deckId === '__favs__') return { id:'__favs__', name:'Favorites', icon:'★', cards: favCards() };
+  return DECKS.find(function(d) { return d.id === deckId; });
+}
+
 function renderBrowse() {
-  const deck = DECKS.find(function(d) { return d.id === browseState.deckId; });
+  const deck = browseDeckView(browseState.deckId);
   if (!deck) { goHome(); return; }
+  const isFavs = deck.id === '__favs__';
   document.getElementById('browse-title').textContent = deck.icon + '  ' + deck.name;
   const s = deckStats(deck.id);
   document.getElementById('browse-sub').textContent =
     deck.cards.length + ' cards · ' + s.due + ' due · ' + s.mastered + ' mastered';
 
+  const studyBtn = document.getElementById('browse-study-btn');
+  studyBtn.textContent = isFavs ? 'Study favorites →' : 'Study deck →';
+  studyBtn.style.display = deck.cards.length ? '' : 'none';
+
   const listEl = document.getElementById('browse-list');
   listEl.innerHTML = '';
+
+  if (deck.cards.length === 0) {
+    listEl.innerHTML = '<div class="sr-empty">' +
+      (isFavs ? 'No favorites yet. Tap the ☆ on any card to add it here.'
+              : 'This deck has no cards.') + '</div>';
+    return;
+  }
+
   let focusEl = null;
   for (const c of deck.cards) {
     const st    = cardStatus(getCard(progress, c.id));
+    const fav   = isFav(c.id);
     const label = c.frontLabel ? '<div class="browse-label">' + escHtml(c.frontLabel) + '</div>' : '';
     const fsub  = c.frontSub   ? '<span class="browse-fsub">' + escHtml(c.frontSub) + '</span>' : '';
     const bsub  = c.backSub    ? '<span class="browse-bsub">' + escHtml(c.backSub) + '</span>' : '';
@@ -1070,6 +1197,7 @@ function renderBrowse() {
     row.dataset.card = c.id;
     row.innerHTML =
       '<div class="browse-headrow">' +
+        '<button class="browse-star' + (fav ? ' active' : '') + '" title="Favorite">' + (fav ? '★' : '☆') + '</button>' +
         '<div class="browse-main">' + label +
           '<div class="browse-front">' + escHtml(c.front) + fsub + '</div>' +
         '</div>' +
@@ -1078,7 +1206,10 @@ function renderBrowse() {
       '</div>' +
       '<div class="browse-answer"><div class="browse-answer-inner">' +
         '<div class="browse-back">' + escHtml(c.back) + bsub + '</div>' + notes +
-        '<button class="browse-practice">Practice this card ▶</button>' +
+        '<div class="browse-actions">' +
+          '<button class="browse-practice">Practice this card ▶</button>' +
+          '<button class="browse-report">⚐ Report</button>' +
+        '</div>' +
       '</div></div>';
     listEl.appendChild(row);
     if (browseState.focusCardId && c.id === browseState.focusCardId) focusEl = row;
@@ -1097,6 +1228,16 @@ function initBrowseClicks() {
   listEl.addEventListener('click', function(e) {
     const row = e.target.closest('.browse-row');
     if (!row) return;
+    const starEl = e.target.closest('.browse-star');
+    if (starEl) {
+      e.stopPropagation();
+      toggleFav(row.dataset.card);
+      const active = isFav(row.dataset.card);
+      starEl.classList.toggle('active', active);
+      starEl.textContent = active ? '★' : '☆';
+      return;
+    }
+    if (e.target.closest('.browse-report'))   { reportCard(row.dataset.card); return; }
     if (e.target.closest('.browse-practice')) { practiceCard(row.dataset.card); return; }
     row.classList.toggle('open');
     row.classList.remove('focus');
@@ -1173,11 +1314,26 @@ function renderCard() {
   else cbSub.style.display = 'none';
   document.getElementById('cb-notes').textContent = card.notes || '';
 
+  const starBtn = document.getElementById('study-star');
+  const fav = isFav(card.id);
+  starBtn.textContent = fav ? '★' : '☆';
+  starBtn.classList.toggle('active', fav);
+
   session.flipped   = false;
   session.revealed  = false;
   document.getElementById('rating-row').classList.add('hidden');
   document.getElementById('interval-hints').classList.add('hidden');
   document.getElementById('btn-flip').style.display = '';
+}
+
+function toggleStudyStar() {
+  const card = session.queue[session.idx];
+  if (!card) return;
+  toggleFav(card.id);
+  const fav = isFav(card.id);
+  const starBtn = document.getElementById('study-star');
+  starBtn.textContent = fav ? '★' : '☆';
+  starBtn.classList.toggle('active', fav);
 }
 
 function flipCard() {
@@ -1227,10 +1383,70 @@ function showComplete() {
 }
 
 // ================================================================
+// REPORT AN ISSUE  (opens a pre-filled email; no backend needed)
+// ================================================================
+const REPORT_EMAIL = 'spsingleton.gwb@gmail.com';
+let reportTarget = null;
+
+function reportCard(cardId) {
+  const card = allCards().find(function(c) { return c.id === cardId; });
+  if (card) openReportModal(card);
+}
+function reportCurrentCard() {
+  const card = session.queue[session.idx];
+  if (card) openReportModal(card);
+}
+function openReportModal(card) {
+  reportTarget = card;
+  const deck = DECKS.find(function(d) { return d.cards.some(function(c){ return c.id === card.id; }); });
+  const label = card.frontLabel ? ' <span>' + escHtml(card.frontLabel) + '</span>' : '';
+  document.getElementById('report-card-info').innerHTML =
+    '<div class="rc-deck">' + escHtml(deck ? (deck.icon + ' ' + deck.name) : 'Card') + '</div>' +
+    '<div class="rc-front">' + escHtml(card.front) + label + '</div>' +
+    '<div class="rc-back">' + escHtml(card.back) + '</div>';
+  document.getElementById('report-note').value = '';
+  document.getElementById('report-modal').style.display = 'flex';
+}
+function closeReportModal() {
+  document.getElementById('report-modal').style.display = 'none';
+  reportTarget = null;
+}
+function sendReport() {
+  if (!reportTarget) return;
+  const c    = reportTarget;
+  const note = document.getElementById('report-note').value.trim();
+  const deck = DECKS.find(function(d) { return d.cards.some(function(x){ return x.id === c.id; }); });
+  const subject = 'Japanese SRS — card issue: ' + c.front;
+  var NL = String.fromCharCode(10);
+  var lines = [];
+  lines.push('Issue report from the Japanese SRS app.');
+  lines.push('');
+  lines.push('Your note:');
+  lines.push(note || '(none provided)');
+  lines.push('');
+  lines.push('— Card details —');
+  lines.push('Deck: ' + (deck ? deck.name : '(unknown)'));
+  lines.push('Front: ' + c.front + (c.frontSub ? ' (' + c.frontSub + ')' : ''));
+  if (c.frontLabel) lines.push('Prompt: ' + c.frontLabel);
+  lines.push('Answer: ' + c.back);
+  if (c.notes) lines.push('Notes: ' + c.notes);
+  lines.push('Card ID: ' + c.id);
+  var body = lines.join(NL);
+  const url = 'mailto:' + REPORT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  window.location.href = url;
+  closeReportModal();
+}
+
+// ================================================================
 // IMPORT / EXPORT
 // ================================================================
 function exportProgress() {
-  const data = JSON.stringify(loadProgress(), null, 2);
+  const payload = {
+    _format:   'jp_srs_backup_v1',
+    progress:  loadProgress(),
+    favorites: [...loadFavs()]
+  };
+  const data = JSON.stringify(payload, null, 2);
   const blob = new Blob([data], { type: 'application/json' });
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
@@ -1246,9 +1462,17 @@ function importProgress(event) {
   reader.onload = (e) => {
     try {
       const data = JSON.parse(e.target.result);
-      if (typeof data !== 'object' || Array.isArray(data)) throw new Error();
-      localStorage.setItem(STORE_KEY, JSON.stringify(data));
-      progress = data;
+      if (typeof data !== 'object' || data === null || Array.isArray(data)) throw new Error();
+      let prog, favList = null;
+      if (data._format === 'jp_srs_backup_v1') {
+        prog    = (data.progress && typeof data.progress === 'object') ? data.progress : {};
+        favList = Array.isArray(data.favorites) ? data.favorites : [];
+      } else {
+        prog = data;  // legacy format: a plain { cardId: schedule } map
+      }
+      localStorage.setItem(STORE_KEY, JSON.stringify(prog));
+      progress = prog;
+      if (favList) { favs = new Set(favList); saveFavs(favs); }
       renderHome();
       alert("Progress imported successfully!");
     } catch(err) {

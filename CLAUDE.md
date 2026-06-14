@@ -34,7 +34,13 @@ data/                 JSON source files (one per vocabulary category)
 4. `json.dumps()` the decks list into the HTML template as `const DECKS = ...`.
 5. Writes the full HTML/CSS/JS to `index.html`.
 
-The entire app state (SRS schedules) lives in `localStorage['jp_srs_v2']` as a plain object keyed by card ID.
+The entire app state (SRS schedules) lives in `localStorage['jp_srs_v2']` as a plain object keyed by card ID. Favorites live separately in `localStorage['jp_srs_favs_v1']` as a JSON array of card IDs. Export/Import now writes a versioned object `{ _format:'jp_srs_backup_v1', progress, favorites }`; import still accepts the legacy plain progress-map format for backward compatibility.
+
+**Favorites** (`★`): toggled from the study-screen star or the ☆ in browse rows. A "Favorites" banner on home opens a virtual `__favs__` deck (handled in `resolveCards`/`cardsForDecks`/`deckStats`/`browseDeckView`) that is browsable and studyable like any deck.
+
+**Report an issue**: a button on the study screen and in each browse row opens a modal, then launches a pre-filled `mailto:` to `REPORT_EMAIL` (top of the REPORT section in the JS) containing the user's note plus deck/front/prompt/answer/notes/card-ID. No backend.
+
+**Build-template gotcha:** the JS lives inside a Python `r"""..."""` template. When editing via tools, a literal `\n` in a JS string can be mis-encoded into a real newline (breaking the string). Prefer `String.fromCharCode(10)` + `Array.join` for multi-line strings, and single-quoted JS strings with double-quoted HTML attributes inside (never `\"`).
 
 ## The most important rule: card IDs are immutable
 
