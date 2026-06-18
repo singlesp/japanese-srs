@@ -30,7 +30,7 @@ NOTE: Avoid apostrophes (') inside single-quoted JS strings in this template.
 Use double-quotes ("...") for any JS string that may contain an apostrophe.
 """
 
-import json, os, glob
+import json, os, glob, random
 
 HERE     = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(HERE, 'data')
@@ -49,6 +49,7 @@ occs      = load('vocab_occupations.json')
 time_v    = load('vocab_time.json')
 location  = load('vocab_location.json')
 verbs_d   = load('verbs.json')
+concepts  = load('conjugation_concepts.json')
 
 with open(ADJ_PATH, encoding='utf-8') as f:
     adj_data = json.load(f)
@@ -164,30 +165,36 @@ rule_hints = {
     'irreg':{'masu':'irregular','masen':'irregular','te':'irregular','ta':'irregular'},
 }
 
-for form_key, question, form_name, form_desc in CONJ_FORMS:
-    conj_cards = []
-    for v in verbs_d['verbs']:
-        hint  = rule_hints[v['type']][form_key]
-        extra = v.get('notes','')
-        conj_cards.append({
-            'id':         f"vconj_{v['id']}_{form_key}",
-            'front':      v['dict'],
-            'frontSub':   v['english'],
-            'frontLabel': question,
-            'back':       v['forms'][form_key],
-            'backSub':    '',
-            'notes':      f"{verb_type_labels[v['type']]}: {hint}" + (f" — {extra}" if extra else '')
-        })
-    decks.append({
-        'id':       f'verb_conj_{form_key}',
-        'name':     f'Verb Conjugation — {form_name}',
-        'icon':     '⚡',
-        'type':     'conjugation',
-        'formDesc': form_desc,
-        'cards':    conj_cards
-    })
+# Curated subset for the combined drill deck — a representative sample that
+# includes every irregular, so each pattern is exercised without grinding all
+# 80+ words. The 15 verbs below cover every て-form branch that exists in the
+# data (う・つ・る→って, ぶ・む→んで, く→いて, す→して) plus いく/する/くる.
+CURATED_VERB_IDS = [
+    'v_taberu', 'v_miru', 'v_neru',                       # Ru-verbs (Group II)
+    'v_iku', 'v_kau', 'v_matsu', 'v_nomu', 'v_asobu',     # U-verbs (Group I),
+    'v_kaku', 'v_hanasu', 'v_kaeru', 'v_yomu',            #   covering て-branches
+    'v_kuru', 'v_suru', 'v_benkyousuru',                  # Irregular / する
+]
+CURATED_I_ADJ = [
+    'いい / よい', 'あたまがいい', 'なかがいい', 'かっこいい', 'かわいい',
+    'たかい', 'おいしい', 'たのしい', 'おおきい', 'ちいさい',
+    'さむい', 'むずかしい', 'いそがしい', 'おもしろい', 'しょっぱい / しおからい',
+]
+CURATED_NA_ADJ = [
+    'げんき', 'しずか', 'きれい', 'べんり', 'ゆうめい', 'すき', 'きらい',
+    'ひま', 'しんせつ', 'にぎやか', 'たいへん', 'だいじょうぶ', 'たいせつ / だいじ',
+]
+I_ADJ_FORMS = [
+    ('neg_cas',     '→ negative (casual)?'),
+    ('past_cas',    '→ past tense (casual)?'),
+    ('negpast_cas', '→ negative past?'),
+]
+NA_ADJ_FORMS = [
+    ('neg_pol',  '→ negative (polite)?', 'na-adjective: adj + ではありません'),
+    ('past_pol', '→ past (polite)?',     'na-adjective: adj + でした'),
+]
 
-# 5. Adjective conjugation decks
+# 5. Adjective conjugation helper
 
 # ── i-adjective conjugation helper ────────────────────────────────
 # The adjective いい / よい ("good") is irregular: its casual forms come from
@@ -229,54 +236,89 @@ def i_adj_info(hira):
     }
     return forms, is_good
 
-def make_adj_conj_cards(adj_type, form_key, question, rule_i, rule_na):
-    cards = []
-    for cat in adj_data['categories']:
-        if cat['type'] != adj_type:
-            continue
-        dup = _dup_hiragana(cat)
-        for w in cat['words']:
-            hira = w['hiragana']
-            eng  = w['english']
-            if adj_type == 'i':
-                forms, is_good = i_adj_info(hira)
-                answer = forms.get(form_key, '?')
-                rule   = rule_i
-                if is_good:
-                    rule = 'Irregular: いい/よい (good) uses stem よ — よくない / よかった / よくなかった'
-            else:
-                primary = hira.split('/')[0].strip()
-                answer = {'neg_pol': primary+'ではありません','past_pol': primary+'でした'}.get(form_key,'?')
-                rule   = rule_na
-            safe_id = adj_safe_id(w, dup)
-            cards.append({
-                'id':         f"adjconj_{adj_type}_{safe_id}_{form_key}",
-                'front':      hira,
-                'frontSub':   eng,
-                'frontLabel': question,
-                'back':       answer,
-                'backSub':    '',
-                'notes':      rule
-            })
-    return cards
+# ── Build the single combined drill deck ──────────────────────────
+# Lookups for the curated selection.
+adj_by_hira = {}
+dup_by_type = {}
+for cat in adj_data['categories']:
+    dup_by_type[cat['type']] = _dup_hiragana(cat)
+    for w in cat['words']:
+        adj_by_hira[(cat['type'], w['hiragana'])] = w
+verb_by_id = {v['id']: v for v in verbs_d['verbs']}
 
-adj_conj_specs = [
-    ('i',  'neg_cas',     '→ negative (casual)?',   'い → くない',         ''),
-    ('i',  'past_cas',    '→ past tense (casual)?',  'い → かった',         ''),
-    ('i',  'negpast_cas', '→ negative past?',        'い → くなかった',     ''),
-    ('na', 'neg_pol',     '→ negative (polite)?',    '', 'adj + ではありません'),
-    ('na', 'past_pol',    '→ past (polite)?',        '', 'adj + でした'),
-]
-for adj_type, form_key, question, rule_i, rule_na in adj_conj_specs:
-    label = 'い' if adj_type == 'i' else 'な'
-    form_readable = question.replace('→ ','').replace('?','').strip()
-    decks.append({
-        'id':    f'adj_conj_{adj_type}_{form_key}',
-        'name':  f'{label}-Adj Conjugation — {form_readable}',
-        'icon':  '🔄',
-        'type':  'conjugation',
-        'cards': make_adj_conj_cards(adj_type, form_key, question, rule_i, rule_na)
-    })
+drill_cards = []
+
+# Verbs × 4 forms — English meaning moves from the front to the back (backSub).
+for vid in CURATED_VERB_IDS:
+    v = verb_by_id[vid]
+    for form_key, question, form_name, form_desc in CONJ_FORMS:
+        hint  = rule_hints[v['type']][form_key]
+        extra = v.get('notes', '')
+        drill_cards.append({
+            'id':         f"vconj_{v['id']}_{form_key}",
+            'front':      v['dict'],
+            'frontSub':   '',                  # no English hint on the front
+            'frontLabel': question,
+            'back':       v['forms'][form_key],
+            'backSub':    v['english'],        # ← English shown on the back
+            'notes':      f"{verb_type_labels[v['type']]}: {hint}" + (f" — {extra}" if extra else ''),
+        })
+
+# i-adjectives × 3 forms
+for hira in CURATED_I_ADJ:
+    w = adj_by_hira[('i', hira)]
+    forms, is_good = i_adj_info(hira)
+    safe_id = adj_safe_id(w, dup_by_type['i'])
+    rule = ('Irregular: いい/よい (good) uses stem よ — よくない / よかった / よくなかった'
+            if is_good else 'い-adjective: drop the final い, then add the ending')
+    for form_key, question in I_ADJ_FORMS:
+        drill_cards.append({
+            'id':         f"adjconj_i_{safe_id}_{form_key}",
+            'front':      hira,
+            'frontSub':   '',
+            'frontLabel': question,
+            'back':       forms[form_key],
+            'backSub':    w['english'],
+            'notes':      rule,
+        })
+
+# na-adjectives × 2 forms
+for hira in CURATED_NA_ADJ:
+    w = adj_by_hira[('na', hira)]
+    safe_id = adj_safe_id(w, dup_by_type['na'])
+    primary = hira.split('/')[0].strip()
+    for form_key, question, rule in NA_ADJ_FORMS:
+        answer = {'neg_pol': primary + 'ではありません', 'past_pol': primary + 'でした'}[form_key]
+        drill_cards.append({
+            'id':         f"adjconj_na_{safe_id}_{form_key}",
+            'front':      hira,
+            'frontSub':   '',
+            'frontLabel': question,
+            'back':       answer,
+            'backSub':    w['english'],
+            'notes':      rule,
+        })
+
+# Deterministic shuffle so new-card batches interleave verbs, adjectives and
+# forms — you cannot autopilot a single pattern. The fixed seed keeps the build
+# byte-reproducible.
+random.Random(20260617).shuffle(drill_cards)
+
+# Patterns & Exceptions (hand-authored concept cards) listed first, drills next.
+decks.append({
+    'id':    concepts.get('id', 'conj_patterns'),
+    'name':  concepts.get('name', 'Patterns & Exceptions'),
+    'icon':  concepts.get('icon', '🧩'),
+    'type':  'conjugation',
+    'cards': flatten(concepts),
+})
+decks.append({
+    'id':    'conj_drills',
+    'name':  'Conjugation Drills',
+    'icon':  '⚡',
+    'type':  'conjugation',
+    'cards': drill_cards,
+})
 
 # 6. Weekly recap decks
 recap_deck_ids = []
@@ -734,11 +776,8 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
     <div class="section-title">Vocabulary</div>
     <div class="deck-grid" id="deck-list-vocab"></div>
 
-    <div class="section-title">Verb Conjugation</div>
-    <div class="deck-grid" id="deck-list-vconj"></div>
-
-    <div class="section-title">Adjective Conjugation</div>
-    <div class="deck-grid" id="deck-list-adjconj"></div>
+    <div class="section-title">Conjugation</div>
+    <div class="deck-grid" id="deck-list-conj"></div>
 
     <div class="section-title">Progress</div>
     <div class="progress-tools">
@@ -1022,12 +1061,10 @@ function renderHome() {
     }
   }
 
-  const vocabIds   = DECKS.filter(d => d.type==='vocab').map(d => d.id);
-  const vconjIds   = DECKS.filter(d => d.id.startsWith('verb_conj')).map(d => d.id);
-  const adjconjIds = DECKS.filter(d => d.id.startsWith('adj_conj')).map(d => d.id);
-  renderDeckList('deck-list-vocab',   vocabIds);
-  renderDeckList('deck-list-vconj',   vconjIds);
-  renderDeckList('deck-list-adjconj', adjconjIds);
+  const vocabIds = DECKS.filter(d => d.type==='vocab').map(d => d.id);
+  const conjIds  = DECKS.filter(d => d.type==='conjugation').map(d => d.id);
+  renderDeckList('deck-list-vocab', vocabIds);
+  renderDeckList('deck-list-conj',  conjIds);
 }
 
 function renderDeckList(containerId, deckIds) {

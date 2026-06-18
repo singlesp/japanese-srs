@@ -89,19 +89,20 @@ def test_single_trailing_i_only_stripped(i_adj_info):
 
 
 # ── Integration: audit the actually-generated conjugation cards ───
-CONJ_DECK_FORM = {
-    "adj_conj_i_neg_cas": "neg_cas",
-    "adj_conj_i_past_cas": "past_cas",
-    "adj_conj_i_negpast_cas": "negpast_cas",
+# Cards now live in the single combined "conj_drills" deck, so we identify
+# i-adjective conjugation cards by id prefix + prompt rather than by deck id.
+IQ_TO_FORM = {
+    "→ negative (casual)?": "neg_cas",
+    "→ past tense (casual)?": "past_cas",
+    "→ negative past?": "negpast_cas",
 }
 
 
 def _i_adj_conj_cards(decks):
     for d in decks:
-        form = CONJ_DECK_FORM.get(d["id"])
-        if form:
-            for c in d["cards"]:
-                yield c, form
+        for c in d["cards"]:
+            if c["id"].startswith("adjconj_i_") and c.get("frontLabel") in IQ_TO_FORM:
+                yield c, IQ_TO_FORM[c["frontLabel"]]
 
 
 def test_generated_i_adj_conjugations_match_reference(decks):
@@ -164,14 +165,23 @@ def test_no_unresolved_conjugation_placeholders(decks):
 
 
 # ── na-adjective polite forms (slash handling) ────────────────────
+def _na_cards(decks, label):
+    out = {}
+    for d in decks:
+        for c in d["cards"]:
+            if c["id"].startswith("adjconj_na_") and c.get("frontLabel") == label:
+                out[c["front"]] = c["back"]
+    return out
+
+
 def test_na_adj_slash_uses_primary(decks):
-    neg = {c["front"]: c["back"] for d in decks if d["id"] == "adj_conj_na_neg_pol" for c in d["cards"]}
-    past = {c["front"]: c["back"] for d in decks if d["id"] == "adj_conj_na_past_pol" for c in d["cards"]}
+    neg = _na_cards(decks, "→ negative (polite)?")
+    past = _na_cards(decks, "→ past (polite)?")
     assert neg["たいせつ / だいじ"] == "たいせつではありません"
     assert past["たいせつ / だいじ"] == "たいせつでした"
 
 
 def test_na_adj_basic_forms(decks):
-    neg = {c["front"]: c["back"] for d in decks if d["id"] == "adj_conj_na_neg_pol" for c in d["cards"]}
+    neg = _na_cards(decks, "→ negative (polite)?")
     assert neg["きれい"] == "きれいではありません"
     assert neg["げんき"] == "げんきではありません"

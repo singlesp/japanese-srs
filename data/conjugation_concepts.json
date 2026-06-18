@@ -1,0 +1,175 @@
+{
+  "id": "conj_patterns",
+  "name": "Patterns & Exceptions",
+  "icon": "🧩",
+  "source": "Hand-authored concept cards — the rules and edge cases behind the drills.",
+  "groups": [
+    {
+      "name": "i-Adjectives",
+      "cards": [
+        {
+          "id": "concept_i_neg",
+          "frontLabel": "i-adjective",
+          "front": "→ negative (casual)?",
+          "back": "～くない",
+          "notes": "Drop the final い, add くない.  たかい → たかくない"
+        },
+        {
+          "id": "concept_i_past",
+          "frontLabel": "i-adjective",
+          "front": "→ past (casual)?",
+          "back": "～かった",
+          "notes": "Drop い, add かった.  たかい → たかかった"
+        },
+        {
+          "id": "concept_i_negpast",
+          "frontLabel": "i-adjective",
+          "front": "→ negative past?",
+          "back": "～くなかった",
+          "notes": "たかい → たかくなかった"
+        },
+        {
+          "id": "concept_ii_neg",
+          "frontLabel": "いい / よい (good) — irregular",
+          "front": "→ negative?",
+          "back": "よくない",
+          "notes": "NOT いくない. いい switches to the よ stem.  Past: よかった · neg-past: よくなかった"
+        },
+        {
+          "id": "concept_compound_ii",
+          "frontLabel": "あたまがいい · なかがいい",
+          "front": "→ negative?",
+          "back": "～よくない",
+          "notes": "Compounds ending in いい (good) inherit the irregularity: あたまがいい → あたまがよくない"
+        },
+        {
+          "id": "concept_kawaii_vs_kakkoii",
+          "frontLabel": "かわいい vs かっこいい",
+          "front": "which one uses the よ stem?",
+          "back": "かっこいい",
+          "notes": "かっこいい = …+いい(good) → かっこよくない. But かわいい is a normal i-adjective → かわいくない (just drop one い)."
+        }
+      ]
+    },
+    {
+      "name": "na-Adjectives",
+      "cards": [
+        {
+          "id": "concept_na_neg",
+          "frontLabel": "na-adjective",
+          "front": "→ negative (polite)?",
+          "back": "～ではありません",
+          "notes": "げんき → げんきではありません  (casual: ～じゃない)"
+        },
+        {
+          "id": "concept_na_past",
+          "frontLabel": "na-adjective",
+          "front": "→ past (polite)?",
+          "back": "～でした",
+          "notes": "げんき → げんきでした"
+        },
+        {
+          "id": "concept_na_trap",
+          "frontLabel": "きれい · きらい",
+          "front": "i-adjective or na-adjective?",
+          "back": "na-adjective",
+          "notes": "They end in い but conjugate as na-adjectives: きれいではありません, never きれくない."
+        }
+      ]
+    },
+    {
+      "name": "Verbs — polite (ます)",
+      "cards": [
+        {
+          "id": "concept_ru_masu",
+          "frontLabel": "Ru-verb (Group II)",
+          "front": "→ ます?",
+          "back": "drop る + ます",
+          "notes": "たべる → たべます · みる → みます"
+        },
+        {
+          "id": "concept_u_masu",
+          "frontLabel": "U-verb (Group I)",
+          "front": "→ ます?",
+          "back": "i-row + ます",
+          "notes": "Shift the final u-sound to its i-row: のむ → のみます · かく → かきます · はなす → はなします"
+        },
+        {
+          "id": "concept_irreg_masu",
+          "frontLabel": "する · くる",
+          "front": "→ ます?",
+          "back": "します · きます",
+          "notes": "Irregular stems: し / き"
+        }
+      ]
+    },
+    {
+      "name": "Verbs — て / た form",
+      "cards": [
+        {
+          "id": "concept_te_uturu",
+          "frontLabel": "U-verb ending う · つ · る",
+          "front": "→ て-form?",
+          "back": "～って",
+          "notes": "かう → かって · まつ → まって · のる → のって"
+        },
+        {
+          "id": "concept_te_bumunu",
+          "frontLabel": "U-verb ending ぶ · む · ぬ",
+          "front": "→ て-form?",
+          "back": "～んで",
+          "notes": "あそぶ → あそんで · のむ → のんで · しぬ → しんで"
+        },
+        {
+          "id": "concept_te_ku",
+          "frontLabel": "U-verb ending く",
+          "front": "→ て-form?",
+          "back": "～いて",
+          "notes": "かく → かいて.  Big exception: いく → いって!"
+        },
+        {
+          "id": "concept_te_gu",
+          "frontLabel": "U-verb ending ぐ",
+          "front": "→ て-form?",
+          "back": "～いで",
+          "notes": "およぐ → およいで"
+        },
+        {
+          "id": "concept_te_su",
+          "frontLabel": "U-verb ending す",
+          "front": "→ て-form?",
+          "back": "～して",
+          "notes": "はなす → はなして"
+        },
+        {
+          "id": "concept_te_ru",
+          "frontLabel": "Ru-verb",
+          "front": "→ て-form?",
+          "back": "drop る + て",
+          "notes": "たべる → たべて · みる → みて"
+        },
+        {
+          "id": "concept_te_iku",
+          "frontLabel": "Exception: いく (to go)",
+          "front": "→ て-form?",
+          "back": "いって",
+          "notes": "NOT いいて. The past (た) form is いった."
+        },
+        {
+          "id": "concept_te_irreg",
+          "frontLabel": "する · くる",
+          "front": "→ て-form?",
+          "back": "して · きて",
+          "notes": "Past (た): した · きた"
+        },
+        {
+          "id": "concept_ta_rule",
+          "frontLabel": "た-form (casual past)",
+          "front": "how do you derive it?",
+          "back": "like て-form: て→た, で→だ",
+          "notes": "のんで → のんだ · かいて → かいた · たべて → たべた"
+        }
+      ]
+    }
+  ]
+}

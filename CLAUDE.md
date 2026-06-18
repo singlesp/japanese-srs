@@ -191,11 +191,22 @@ New/unseen cards have `reps=0` and `due=0` (always due). Sessions batch up to 20
 
 Navigation is purely JS (`showScreen(id)`). No routing library.
 
+## Conjugation decks
+
+There are two conjugation decks (both `type: 'conjugation'`, shown under the single "Conjugation" home section):
+
+- **`conj_patterns` — Patterns & Exceptions.** Hand-authored concept/rule/edge-case cards in `data/conjugation_concepts.json` (vocab-file format; ids `concept_*`). This is where the *rules* live (い-adj negative, the いい→よ irregularity, u-verb て-form branches, いく/する/くる). Edit the JSON to add/refine concepts.
+- **`conj_drills` — Conjugation Drills.** One combined deck mixing verbs + i-adj + na-adj across all forms, built from **curated subsets** (`CURATED_VERB_IDS`, `CURATED_I_ADJ`, `CURATED_NA_ADJ` in `build_app.py`) so you can't autopilot one pattern. Cards keep their original `vconj_*` / `adjconj_*` ids (progress preserved). The English meaning is on the **back** (`backSub`); the front shows only the dict/base form + prompt. The card order is a fixed-seed shuffle (`random.Random(...)`) to interleave patterns while staying byte-reproducible.
+
+To include a word in the drills, add it to the relevant `CURATED_*` list (it must exist in `verbs.json` / `adjectives_vocab.json`). The old per-form decks (`verb_conj_*`, `adj_conj_*`) no longer exist.
+
 ## Common tasks for future sessions
 
 **Add a new week's recap:** Create `data/weekly_recap_YYYY_MM_DD.json`, rebuild.
 
-**Add a new verb:** Append to `verbs.json` with all four hardcoded forms, rebuild.
+**Add a new verb:** Append to `verbs.json` with all four hardcoded forms (adds it to the Verbs-vocabulary deck). To also drill it, add its id to `CURATED_VERB_IDS`. Rebuild.
+
+**Add/refine a conjugation rule card:** Edit `data/conjugation_concepts.json`, rebuild.
 
 **Add a new vocabulary category:** Create a new `data/vocab_*.json` and add it to the `for d in [...]` list near the top of `build_app.py`, rebuild.
 
