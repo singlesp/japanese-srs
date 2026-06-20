@@ -17,6 +17,7 @@ VOCAB_FILES = [
     "vocab_occupations.json",
     "vocab_time.json",
     "vocab_location.json",
+    "vocab_counting.json",
 ]
 
 

@@ -1,0 +1,131 @@
+{
+  "id": "counting",
+  "name": "Counting & Counters",
+  "icon": "🔢",
+  "source": "Numbers, the native (つ) counter, and common counters with sound changes.",
+  "groups": [
+    {
+      "name": "Numbers 1–10",
+      "cards": [
+        {"id": "count_n1",  "front": "いち",   "frontSub": "1 · 一",  "back": "one"},
+        {"id": "count_n2",  "front": "に",     "frontSub": "2 · 二",  "back": "two"},
+        {"id": "count_n3",  "front": "さん",   "frontSub": "3 · 三",  "back": "three"},
+        {"id": "count_n4",  "front": "よん",   "frontSub": "4 · 四",  "back": "four", "notes": "also し — e.g. 四月 (しがつ) April"},
+        {"id": "count_n5",  "front": "ご",     "frontSub": "5 · 五",  "back": "five"},
+        {"id": "count_n6",  "front": "ろく",   "frontSub": "6 · 六",  "back": "six"},
+        {"id": "count_n7",  "front": "なな",   "frontSub": "7 · 七",  "back": "seven", "notes": "also しち — e.g. 七時 (しちじ) 7 o’clock"},
+        {"id": "count_n8",  "front": "はち",   "frontSub": "8 · 八",  "back": "eight"},
+        {"id": "count_n9",  "front": "きゅう", "frontSub": "9 · 九",  "back": "nine", "notes": "also く — e.g. 九時 (くじ) 9 o’clock"},
+        {"id": "count_n10", "front": "じゅう", "frontSub": "10 · 十", "back": "ten"}
+      ]
+    },
+    {
+      "name": "Bigger numbers",
+      "cards": [
+        {"id": "count_n11",    "front": "じゅういち", "frontSub": "11 · 十一",   "back": "eleven", "notes": "ten + one; 12 = じゅうに, 13 = じゅうさん …"},
+        {"id": "count_n20",    "front": "にじゅう",   "frontSub": "20 · 二十",   "back": "twenty", "notes": "two × ten; 30 = さんじゅう, 40 = よんじゅう …"},
+        {"id": "count_n100",   "front": "ひゃく",     "frontSub": "100 · 百",    "back": "hundred", "notes": "300 = さんびゃく, 600 = ろっぴゃく, 800 = はっぴゃく"},
+        {"id": "count_n1000",  "front": "せん",       "frontSub": "1000 · 千",   "back": "thousand", "notes": "3000 = さんぜん, 8000 = はっせん"},
+        {"id": "count_n10000", "front": "いちまん",   "frontSub": "10000 · 一万", "back": "ten thousand", "notes": "always いちまん (with いち) for 10,000"}
+      ]
+    },
+    {
+      "name": "Counting things (〜つ)",
+      "cards": [
+        {"id": "count_t1",  "front": "ひとつ",   "frontSub": "一つ", "back": "one (thing)"},
+        {"id": "count_t2",  "front": "ふたつ",   "frontSub": "二つ", "back": "two (things)"},
+        {"id": "count_t3",  "front": "みっつ",   "frontSub": "三つ", "back": "three"},
+        {"id": "count_t4",  "front": "よっつ",   "frontSub": "四つ", "back": "four"},
+        {"id": "count_t5",  "front": "いつつ",   "frontSub": "五つ", "back": "five"},
+        {"id": "count_t6",  "front": "むっつ",   "frontSub": "六つ", "back": "six"},
+        {"id": "count_t7",  "front": "ななつ",   "frontSub": "七つ", "back": "seven"},
+        {"id": "count_t8",  "front": "やっつ",   "frontSub": "八つ", "back": "eight"},
+        {"id": "count_t9",  "front": "ここのつ", "frontSub": "九つ", "back": "nine"},
+        {"id": "count_t10", "front": "とお",     "frontSub": "十",   "back": "ten", "notes": "no つ; from 11 up, use the plain numbers"},
+        {"id": "count_tq",  "front": "いくつ",   "frontSub": "幾つ", "back": "how many? / how old?", "notes": "the question word for the 〜つ counter"}
+      ]
+    },
+    {
+      "name": "People (〜人)",
+      "cards": [
+        {"id": "count_p1", "front": "ひとり",   "frontSub": "1人 · 一人", "back": "one person",  "notes": "irregular reading"},
+        {"id": "count_p2", "front": "ふたり",   "frontSub": "2人 · 二人", "back": "two people",  "notes": "irregular reading"},
+        {"id": "count_p3", "front": "さんにん", "frontSub": "3人 · 三人", "back": "three people", "notes": "from 3 up it is regular: 〜にん"},
+        {"id": "count_p4", "front": "よにん",   "frontSub": "4人 · 四人", "back": "four people", "notes": "よにん — not よんにん"},
+        {"id": "count_pq", "front": "なんにん", "frontSub": "何人",       "back": "how many people?"}
+      ]
+    },
+    {
+      "name": "Age (〜歳 / 才)",
+      "cards": [
+        {"id": "count_a1",  "front": "いっさい", "frontSub": "1歳 · 一歳", "back": "one year old",    "notes": "1, 8, 10 → っさい (いっさい, はっさい, じゅっさい)"},
+        {"id": "count_a8",  "front": "はっさい", "frontSub": "8歳 · 八歳", "back": "eight years old"},
+        {"id": "count_a20", "front": "はたち",   "frontSub": "20歳 · 二十歳", "back": "twenty years old", "notes": "irregular special reading for age 20"},
+        {"id": "count_aq",  "front": "なんさい", "frontSub": "何歳",       "back": "how old?",        "notes": "polite version: おいくつ"}
+      ]
+    },
+    {
+      "name": "Long things (〜本)",
+      "cards": [
+        {"id": "count_h0",  "front": "〜ほん",     "frontSub": "〜本", "back": "counter: long, thin things", "notes": "pens, bottles, umbrellas, trees. Reading shifts ほん→ぼん→ぽん (below)."},
+        {"id": "count_h1",  "front": "いっぽん",   "frontSub": "1本", "back": "one (long thing)", "notes": "1 → っぽん"},
+        {"id": "count_h3",  "front": "さんぼん",   "frontSub": "3本", "back": "three (long things)", "notes": "3 → ぼん"},
+        {"id": "count_h6",  "front": "ろっぽん",   "frontSub": "6本", "back": "six"},
+        {"id": "count_h8",  "front": "はっぽん",   "frontSub": "8本", "back": "eight"},
+        {"id": "count_h10", "front": "じゅっぽん", "frontSub": "10本", "back": "ten", "notes": "also じっぽん"},
+        {"id": "count_hq",  "front": "なんぼん",   "frontSub": "何本", "back": "how many (long things)?"}
+      ]
+    },
+    {
+      "name": "Small things (〜個)",
+      "cards": [
+        {"id": "count_k0",  "front": "〜こ",     "frontSub": "〜個", "back": "counter: small / round things", "notes": "apples, eggs, balls, small items"},
+        {"id": "count_k1",  "front": "いっこ",   "frontSub": "1個", "back": "one (small thing)", "notes": "1, 6, 8, 10 → っこ"},
+        {"id": "count_k6",  "front": "ろっこ",   "frontSub": "6個", "back": "six"},
+        {"id": "count_k8",  "front": "はっこ",   "frontSub": "8個", "back": "eight"},
+        {"id": "count_k10", "front": "じゅっこ", "frontSub": "10個", "back": "ten", "notes": "also じっこ"},
+        {"id": "count_kq",  "front": "なんこ",   "frontSub": "何個", "back": "how many (small things)?"}
+      ]
+    },
+    {
+      "name": "Flat things (〜枚)",
+      "cards": [
+        {"id": "count_m0",  "front": "〜まい",   "frontSub": "〜枚", "back": "counter: flat, thin things", "notes": "paper, shirts, plates, tickets, stamps. Regular — no sound changes."},
+        {"id": "count_m1",  "front": "いちまい", "frontSub": "1枚", "back": "one (flat thing)"},
+        {"id": "count_m3",  "front": "さんまい", "frontSub": "3枚", "back": "three (flat things)"},
+        {"id": "count_mq",  "front": "なんまい", "frontSub": "何枚", "back": "how many (flat things)?"}
+      ]
+    },
+    {
+      "name": "Animals (〜匹)",
+      "cards": [
+        {"id": "count_b0",  "front": "〜ひき",     "frontSub": "〜匹", "back": "counter: small animals", "notes": "cats, dogs, fish, insects. Reading shifts ひき→びき→ぴき."},
+        {"id": "count_b1",  "front": "いっぴき",   "frontSub": "1匹", "back": "one (animal)", "notes": "1, 6, 8, 10 → っぴき"},
+        {"id": "count_b3",  "front": "さんびき",   "frontSub": "3匹", "back": "three (animals)", "notes": "3 → びき"},
+        {"id": "count_b6",  "front": "ろっぴき",   "frontSub": "6匹", "back": "six"},
+        {"id": "count_b10", "front": "じゅっぴき", "frontSub": "10匹", "back": "ten", "notes": "also じっぴき"},
+        {"id": "count_bq",  "front": "なんびき",   "frontSub": "何匹", "back": "how many (animals)?"}
+      ]
+    },
+    {
+      "name": "Floors (〜階)",
+      "cards": [
+        {"id": "count_f0",  "front": "〜かい",     "frontSub": "〜階", "back": "counter: floors / storeys"},
+        {"id": "count_f1",  "front": "いっかい",   "frontSub": "1階", "back": "first floor / ground floor", "notes": "1, 6, 10 → っかい"},
+        {"id": "count_f3",  "front": "さんがい",   "frontSub": "3階", "back": "third floor", "notes": "3 → がい (さんかい is also heard)"},
+        {"id": "count_f10", "front": "じゅっかい", "frontSub": "10階", "back": "tenth floor", "notes": "also じっかい"},
+        {"id": "count_fq",  "front": "なんがい",   "frontSub": "何階", "back": "which floor?", "notes": "also なんかい"}
+      ]
+    },
+    {
+      "name": "Times / occurrences (〜回)",
+      "cards": [
+        {"id": "count_c0",  "front": "〜かい",   "frontSub": "〜回", "back": "counter: number of times"},
+        {"id": "count_c1",  "front": "いっかい", "frontSub": "1回", "back": "once", "notes": "1, 6, 8, 10 → っかい"},
+        {"id": "count_c3",  "front": "さんかい", "frontSub": "3回", "back": "three times", "notes": "3回 = さんかい (no voicing) — contrast 3階 = さんがい"},
+        {"id": "count_c6",  "front": "ろっかい", "frontSub": "6回", "back": "six times"},
+        {"id": "count_cq",  "front": "なんかい", "frontSub": "何回", "back": "how many times?"}
+      ]
+    }
+  ]
+}

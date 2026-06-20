@@ -193,12 +193,16 @@ Navigation is purely JS (`showScreen(id)`). No routing library.
 
 ## Conjugation decks
 
-There are two conjugation decks (both `type: 'conjugation'`, shown under the single "Conjugation" home section):
+Per class feedback, verbs and adjectives are kept **separate**. There are four conjugation decks (all `type: 'conjugation'`), shown under two home sections — "Verb Conjugation" and "Adjective Conjugation". Home filtering keys off the id suffix: `_verbs` vs `_adj`.
 
-- **`conj_patterns` — Patterns & Exceptions.** Hand-authored concept/rule/edge-case cards in `data/conjugation_concepts.json` (vocab-file format; ids `concept_*`). This is where the *rules* live (い-adj negative, the いい→よ irregularity, u-verb て-form branches, いく/する/くる). Edit the JSON to add/refine concepts.
-- **`conj_drills` — Conjugation Drills.** One combined deck mixing verbs + i-adj + na-adj across all forms, built from **curated subsets** (`CURATED_VERB_IDS`, `CURATED_I_ADJ`, `CURATED_NA_ADJ` in `build_app.py`) so you can't autopilot one pattern. Cards keep their original `vconj_*` / `adjconj_*` ids (progress preserved). The English meaning is on the **back** (`backSub`); the front shows only the dict/base form + prompt. The card order is a fixed-seed shuffle (`random.Random(...)`) to interleave patterns while staying byte-reproducible.
+- **`conj_patterns_verbs` / `conj_patterns_adj` — Patterns & Exceptions.** Hand-authored concept/rule cards from `data/conjugation_concepts.json` (vocab-file format; ids `concept_*`). The single JSON is split into the two decks by group name in `build_app.py` (`VERB_CONCEPT_GROUPS` / `ADJ_CONCEPT_GROUPS`). This is where the *rules* live (い-adj negative, the いい→よ irregularity, u-verb て-form branches, いく/する/くる). Edit the JSON to add/refine concepts.
+- **`conj_drills_verbs` / `conj_drills_adj` — Conjugation Drills.** Built from **curated subsets** (`CURATED_VERB_IDS`, `CURATED_I_ADJ`, `CURATED_NA_ADJ`) so you can't autopilot one pattern. Cards keep their original `vconj_*` / `adjconj_*` ids (progress preserved). The English meaning is on the **back** (`backSub`); the front shows only the base form + prompt. Each drill deck is a fixed-seed shuffle (`random.Random(...)`) to interleave forms while staying byte-reproducible.
 
-To include a word in the drills, add it to the relevant `CURATED_*` list (it must exist in `verbs.json` / `adjectives_vocab.json`). The old per-form decks (`verb_conj_*`, `adj_conj_*`) no longer exist.
+To include a word in the drills, add it to the relevant `CURATED_*` list (it must exist in `verbs.json` / `adjectives_vocab.json`). The old combined `conj_drills`/`conj_patterns` and per-form `verb_conj_*`/`adj_conj_*` decks no longer exist.
+
+## Counting deck
+
+`data/vocab_counting.json` (deck id `counting`, a normal vocab deck) covers numbers 1–10 and beyond, the native `〜つ` counter, and the counters 人・歳・本・個・枚・匹・階・回 with their sound changes (`いっぽん`, `さんびき`, `さんがい`, …). Card ids are `count_*`. Note 3階 (`さんがい`) vs 3回 (`さんかい`) is an intentional teaching contrast.
 
 ## Common tasks for future sessions
 
