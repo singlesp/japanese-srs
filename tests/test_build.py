@@ -87,6 +87,34 @@ def test_known_ids_present_for_stability(all_cards):
         assert sid in ids, f"expected stable id missing (progress-breaking): {sid}"
 
 
+def test_latest_recap_present(decks):
+    r = next((d for d in decks if d["id"] == "recap_2026_06_18"), None)
+    assert r is not None, "June 18 recap deck missing"
+    assert r["type"] == "recap"
+    assert len(r["cards"]) >= 15
+    assert r.get("topics"), "recap should list topics_covered"
+    assert len(r.get("summary", [])) >= 1, "recap should include a concept summary"
+
+
+def test_concept_decks_have_summaries(decks):
+    """Conjugation + counting + recap decks carry a structured concept summary."""
+    for did in ("conj_drills_verbs", "conj_drills_adj", "counting", "recap_2026_06_18"):
+        d = next(x for x in decks if x["id"] == did)
+        summ = d.get("summary", [])
+        assert summ, f"{did} should have a concept summary"
+        for sec in summ:
+            assert sec.get("h"), f"{did} summary section missing a heading"
+            assert sec.get("items"), f"{did} summary section missing items"
+            assert all(isinstance(i, str) and i for i in sec["items"])
+
+
+def test_plain_vocab_decks_have_no_summary(decks):
+    """Per request: summaries are for concept decks, not plain vocab."""
+    for did in ("family", "countries", "occupations"):
+        d = next(x for x in decks if x["id"] == did)
+        assert not d.get("summary"), f"{did} should not carry a summary"
+
+
 def test_recap_deck_count_matches_files(decks):
     n_files = len(list(DATA_DIR.glob("weekly_recap_*.json")))
     n_recap_decks = sum(1 for d in decks if d.get("type") == "recap")

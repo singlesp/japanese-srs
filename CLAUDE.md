@@ -101,6 +101,7 @@ Same structure as vocab files, plus top-level metadata:
   "topics_covered": ["の particle", "たい form", "..."],
   "homework": "Description of homework assignment",
   "next_class": "YYYY-MM-DD",
+  "summary": [ {"h": "Section heading", "items": ["bullet", "bullet"]} ],
   "groups": [ ... same as vocab ... ]
 }
 ```
@@ -199,6 +200,10 @@ Per class feedback, verbs and adjectives are kept **separate**. There are four c
 - **`conj_drills_verbs` / `conj_drills_adj` — Conjugation Drills.** Built from **curated subsets** (`CURATED_VERB_IDS`, `CURATED_I_ADJ`, `CURATED_NA_ADJ`) so you can't autopilot one pattern. Cards keep their original `vconj_*` / `adjconj_*` ids (progress preserved). The English meaning is on the **back** (`backSub`); the front shows only the base form + prompt. Each drill deck is a fixed-seed shuffle (`random.Random(...)`) to interleave forms while staying byte-reproducible.
 
 To include a word in the drills, add it to the relevant `CURATED_*` list (it must exist in `verbs.json` / `adjectives_vocab.json`). The old combined `conj_drills`/`conj_patterns` and per-form `verb_conj_*`/`adj_conj_*` decks no longer exist.
+
+## Concept summaries
+
+Any deck may carry an optional top-level `summary`: a list of `{"h": heading, "items": [bullets]}` sections. It renders as a collapsible "📖 Concept summary" panel at the top of that deck's **browse** view (`renderBrowse` → `#browse-summary`). Use it for concept-heavy decks (conjugation, counting, recaps) — not plain vocab. Summaries for the drill decks are defined in `build_app.py` (`VERB_DRILL_SUMMARY`, `ADJ_DRILL_SUMMARY`); for counting/recaps they live in the JSON. The build passes `summary` through for vocab and recap decks.
 
 ## Counting deck
 

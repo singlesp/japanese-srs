@@ -81,11 +81,12 @@ decks = []
 # 1. Vocab decks
 for d in [pronouns, countries, family, occs, time_v, location, counting]:
     decks.append({
-        'id':    d['id'],
-        'name':  d['name'],
-        'icon':  d['icon'],
-        'type':  'vocab',
-        'cards': flatten(d)
+        'id':      d['id'],
+        'name':    d['name'],
+        'icon':    d['icon'],
+        'type':    'vocab',
+        'summary': d.get('summary', []),
+        'cards':   flatten(d)
     })
 
 # 2. Adjective vocab decks
@@ -317,15 +318,48 @@ def concepts_subset(group_names):
 VERB_CONCEPT_GROUPS = {'Verbs — polite (ます)', 'Verbs — て / た form'}
 ADJ_CONCEPT_GROUPS  = {'i-Adjectives', 'na-Adjectives'}
 
+# Concept summaries shown atop each deck's browse view.
+VERB_DRILL_SUMMARY = [
+    {'h': 'The four forms', 'items': [
+        'ます = polite non-past · ません = polite negative · て = connector/request/progressive · た = casual past.',
+    ]},
+    {'h': 'Ru-verbs (Group II)', 'items': [
+        'Drop る, add the ending: たべる → たべます / たべて / たべた.',
+    ]},
+    {'h': 'U-verbs (Group I)', 'items': [
+        'ます: shift the final u-sound to its i-row (のむ → のみます).',
+        'て / た depend on the ending: う・つ・る → って/った · ぶ・む・ぬ → んで/んだ · く → いて/いた · ぐ → いで/いだ · す → して/した.',
+    ]},
+    {'h': 'Irregulars', 'items': [
+        'いく → いって / いった (not いいて).',
+        'する → します・して・した · くる → きます・きて・きた.',
+    ]},
+]
+ADJ_DRILL_SUMMARY = [
+    {'h': 'i-adjectives', 'items': [
+        'Negative: drop い + くない (たかい → たかくない).',
+        'Past: drop い + かった · Negative past: drop い + くなかった.',
+    ]},
+    {'h': 'The いい exception', 'items': [
+        'いい (good) uses the よ stem: よくない / よかった / よくなかった.',
+        'Compounds inherit it: かっこいい → かっこよくない, あたまがいい → あたまがよくない.',
+        'But かわいい is a normal i-adjective → かわいくない (just drop one い).',
+    ]},
+    {'h': 'na-adjectives', 'items': [
+        'Negative (polite): adj + ではありません (げんき → げんきではありません).',
+        'Past (polite): adj + でした. Note きれい・きらい are na-adjectives despite ending in い.',
+    ]},
+]
+
 # Order per section: Patterns first, then Drills.
 decks.append({'id':'conj_patterns_verbs','name':'Verb Patterns & Exceptions',
               'icon':'🧩','type':'conjugation','cards':concepts_subset(VERB_CONCEPT_GROUPS)})
 decks.append({'id':'conj_drills_verbs','name':'Verb Conjugation Drills',
-              'icon':'⚡','type':'conjugation','cards':verb_drill_cards})
+              'icon':'⚡','type':'conjugation','summary':VERB_DRILL_SUMMARY,'cards':verb_drill_cards})
 decks.append({'id':'conj_patterns_adj','name':'Adjective Patterns & Exceptions',
               'icon':'🧩','type':'conjugation','cards':concepts_subset(ADJ_CONCEPT_GROUPS)})
 decks.append({'id':'conj_drills_adj','name':'Adjective Conjugation Drills',
-              'icon':'🔄','type':'conjugation','cards':adj_drill_cards})
+              'icon':'🔄','type':'conjugation','summary':ADJ_DRILL_SUMMARY,'cards':adj_drill_cards})
 
 # 6. Weekly recap decks
 recap_deck_ids = []
@@ -338,6 +372,7 @@ for recap in recaps:
         'date':     recap['date'],
         'homework': recap.get('homework',''),
         'topics':   recap.get('topics_covered',[]),
+        'summary':  recap.get('summary', []),
         'cards':    flatten(recap)
     }
     decks.append(deck)
@@ -540,6 +575,22 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
   border:none; border-radius:8px; padding:7px 13px; font-family:var(--ui); font-size:0.72rem;
   font-weight:600; cursor:pointer; transition:background 0.1s; }
 .rb-browse:hover { background:rgba(255,255,255,0.28); }
+
+/* ── Concept summary panel ────────────────────────────────────── */
+.browse-summary { margin-bottom:14px; }
+.summary-box { background:var(--surface); border:1.5px solid var(--border);
+  border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+.summary-head { cursor:pointer; padding:13px 16px; font-weight:700; font-size:0.9rem;
+  color:var(--navy); list-style:none; display:flex; align-items:center; gap:8px; }
+.summary-head::-webkit-details-marker { display:none; }
+.summary-head::after { content:'▸'; margin-left:auto; color:var(--gray); transition:transform 0.15s; }
+.summary-box[open] .summary-head::after { transform:rotate(90deg); }
+.summary-head:hover { background:var(--bg); }
+.summary-body { padding:4px 16px 16px; }
+.summary-h { font-size:0.74rem; font-weight:700; color:var(--blue); text-transform:uppercase;
+  letter-spacing:0.03em; margin:12px 0 5px; }
+.summary-list { margin:0; padding-left:18px; }
+.summary-list li { font-size:0.85rem; color:var(--navy); line-height:1.55; margin-bottom:4px; }
 
 /* ── Browse screen ────────────────────────────────────────────── */
 .browse-head-bar { margin-bottom:6px; }
@@ -882,6 +933,7 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
       <div class="browse-title" id="browse-title"></div>
       <div class="browse-sub" id="browse-sub"></div>
     </div>
+    <div class="browse-summary" id="browse-summary"></div>
     <div class="browse-hint">Tap any card to reveal its answer, then practice it on its own.</div>
     <div class="browse-list" id="browse-list"></div>
   </div>
@@ -1246,6 +1298,29 @@ function renderBrowse() {
   const studyBtn = document.getElementById('browse-study-btn');
   studyBtn.textContent = isFavs ? 'Study favorites →' : 'Study deck →';
   studyBtn.style.display = deck.cards.length ? '' : 'none';
+
+  // Optional concept summary (collapsible) for conjugation / counting / recap decks.
+  const sumEl = document.getElementById('browse-summary');
+  const summary = deck.summary || [];
+  if (summary.length) {
+    let h = '<details class="summary-box" open>' +
+            '<summary class="summary-head">📖 Concept summary</summary>' +
+            '<div class="summary-body">';
+    for (const sec of summary) {
+      if (sec.h) h += '<div class="summary-h">' + escHtml(sec.h) + '</div>';
+      if (sec.items && sec.items.length) {
+        h += '<ul class="summary-list">';
+        for (const it of sec.items) h += '<li>' + escHtml(it) + '</li>';
+        h += '</ul>';
+      }
+    }
+    h += '</div></details>';
+    sumEl.innerHTML = h;
+    sumEl.style.display = '';
+  } else {
+    sumEl.innerHTML = '';
+    sumEl.style.display = 'none';
+  }
 
   const listEl = document.getElementById('browse-list');
   listEl.innerHTML = '';

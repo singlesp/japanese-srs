@@ -1,0 +1,313 @@
+{
+  "id": "recap_2026_06_18",
+  "name": "Class Recap — June 18",
+  "icon": "📅",
+  "date": "2026-06-18",
+  "next_class": "2026-06-25",
+  "teacher": "Atsuko T",
+  "homework": "6/25 is a free conversation class. Prepare a short story using one of: summer / this-year plans (dictionary-form verb + つもりです), a recent memorable event (past tense), or a favorite sport / movie / book (〜からです). You may email it to Atsuko beforehand for corrections.",
+  "topics_covered": [
+    "Experiences: た-form + ことがあります",
+    "Particle の (descriptive & nominalizer)",
+    "んです / んでしょう (explanation & conjecture)",
+    "でしょう (conjecture & confirmation)",
+    "つもりです (plans) & からです (reasons)",
+    "Everyday phrases (NHK Easy Japanese 4 & 5)"
+  ],
+  "summary": [
+    {
+      "h": "Experiences — た-form + ことがあります",
+      "items": [
+        "Says you have (or have ever) done something: た-form + ことがあります。",
+        "日本に行ったことがありますか？ = Have you ever been to Japan?",
+        "Answers: はい、あります。 / いいえ、ありません。(or いいえ、ないです。)"
+      ]
+    },
+    {
+      "h": "Particle の — descriptive & nominalizer",
+      "items": [
+        "の joins nouns and works with question words: 何の本ですか？ = What book is it?",
+        "Adding の after a verb turns the verb into a noun (nominalizer): あなたが行ったの = the one/place you went."
+      ]
+    },
+    {
+      "h": "んです / んでしょう",
+      "items": [
+        "んです adds explanation, a reason, or emphasis — warmer than a plain fact. 頭が痛いんです = (the thing is) I have a headache.",
+        "As a question it asks for the background reason: どうして遅れたんですか？ (can sound harsh by tone).",
+        "んでしょう = guess + seek confirmation: 寒いんでしょう？ = You're cold, aren't you?",
+        "Attaching: verbs & i-adjectives attach directly (行くんです / 暑いんです); na-adjectives & nouns add な (綺麗なんです)."
+      ]
+    },
+    {
+      "h": "でしょう — conjecture & confirmation",
+      "items": [
+        "Conjecture (probably): 明日は雨が降るでしょう。 = It will probably rain tomorrow.",
+        "Seeking agreement: おいしいでしょう？ = It's delicious, isn't it?"
+      ]
+    },
+    {
+      "h": "Conversation prep — plans & reasons",
+      "items": [
+        "Plans: dictionary-form verb + つもりです = I plan to … (日本に行くつもりです)。",
+        "Memorable events: use the past tense.",
+        "Reasons: 〜からです (i-adj + からです, na-adj + だからです)."
+      ]
+    },
+    {
+      "h": "Everyday phrases (NHK Easy 4 & 5)",
+      "items": [
+        "は is often dropped in casual questions: これ、どこですか？ Put a question word before ですか。",
+        "Final particles: よ emphasizes; ね seeks agreement (いいですね！).",
+        "楽しみです = I'm looking forward to it. 〜が心配です = I'm worried about ~.",
+        "どうしたんですか = What's wrong? まだまだです = humble 'not good enough'.",
+        "Particle で = means/method: ラジオで勉強しました / 日本語で書く。 それなら = if so, in that case."
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "Experiences — た-form + ことがあります",
+      "notes": "た-form + ことがあります = have done / have the experience of doing something.",
+      "cards": [
+        {
+          "id": "recap_0618_koto_intro",
+          "front": "〜たことがあります",
+          "frontSub": "",
+          "frontLabel": "What does this express?",
+          "back": "Have done / have the experience of [verb]",
+          "backSub": "",
+          "notes": "past (た) form + ことがあります"
+        },
+        {
+          "id": "recap_0618_koto_q",
+          "front": "にほんにいったことがありますか？",
+          "frontSub": "日本に行ったことがありますか？",
+          "back": "Have you ever been to Japan?",
+          "backSub": "Nihon ni itta koto ga arimasu ka?",
+          "notes": "行った (た-form of 行く) + ことがありますか"
+        },
+        {
+          "id": "recap_0618_koto_yes",
+          "front": "はい、あります",
+          "frontSub": "",
+          "back": "Yes, I have",
+          "backSub": "hai, arimasu",
+          "notes": "affirmative answer"
+        },
+        {
+          "id": "recap_0618_koto_no",
+          "front": "いいえ、ありません",
+          "frontSub": "",
+          "back": "No, I haven't",
+          "backSub": "iie, arimasen",
+          "notes": "also いいえ、ないです"
+        }
+      ]
+    },
+    {
+      "name": "Particle の — Descriptive & Nominalizer",
+      "notes": "の links nouns, works with question words, and turns a verb into a noun.",
+      "cards": [
+        {
+          "id": "recap_0618_no_nani",
+          "front": "なんのほんですか？",
+          "frontSub": "何の本ですか？",
+          "back": "What book is it?",
+          "backSub": "nan no hon desu ka?",
+          "notes": "の with a question word (何の = what kind of)"
+        },
+        {
+          "id": "recap_0618_no_nominalize",
+          "front": "あなたがいったの",
+          "frontSub": "あなたが行ったの",
+          "back": "the one / place you went (verb → noun)",
+          "backSub": "anata ga itta no",
+          "notes": "の after a verb makes it act as a noun"
+        }
+      ]
+    },
+    {
+      "name": "んです / んでしょう",
+      "notes": "んです = explanation / reason / emphasis. んでしょう = guess + ask for confirmation.",
+      "cards": [
+        {
+          "id": "recap_0618_ndesu_intro",
+          "front": "〜んです",
+          "frontSub": "",
+          "frontLabel": "What does it add?",
+          "back": "Explanation / reason / emphasis",
+          "backSub": "",
+          "notes": "Sounds natural & empathetic, not a cold fact"
+        },
+        {
+          "id": "recap_0618_ndesu_ex",
+          "front": "あたまがいたいんです",
+          "frontSub": "頭が痛いんです",
+          "back": "(The thing is) I have a headache",
+          "backSub": "atama ga itai n desu",
+          "notes": "explains why — e.g. why you look tired"
+        },
+        {
+          "id": "recap_0618_ndesu_q",
+          "front": "どうしておくれたんですか？",
+          "frontSub": "どうして遅れたんですか？",
+          "back": "Why is it that you're late?",
+          "backSub": "dōshite okureta n desu ka?",
+          "notes": "asks for the background reason (can sound harsh)"
+        },
+        {
+          "id": "recap_0618_ndeshou",
+          "front": "さむいんでしょう？",
+          "frontSub": "寒いんでしょう？",
+          "back": "You're cold, aren't you?",
+          "backSub": "samui n deshō?",
+          "notes": "guess from clues + seek confirmation"
+        },
+        {
+          "id": "recap_0618_ndesu_attach",
+          "front": "な-adj / noun + んです",
+          "frontSub": "",
+          "frontLabel": "How do you attach it?",
+          "back": "add な → きれいなんです",
+          "backSub": "kirei na n desu",
+          "notes": "verbs & i-adj attach directly: 行くんです / 暑いんです"
+        }
+      ]
+    },
+    {
+      "name": "でしょう — Conjecture & Confirmation",
+      "notes": "でしょう = probably (conjecture), or 'right?' (seeking agreement).",
+      "cards": [
+        {
+          "id": "recap_0618_deshou_guess",
+          "front": "あしたはあめがふるでしょう",
+          "frontSub": "明日は雨が降るでしょう",
+          "back": "It will probably rain tomorrow",
+          "backSub": "ashita wa ame ga furu deshō",
+          "notes": "conjecture — probably / I think"
+        },
+        {
+          "id": "recap_0618_deshou_confirm",
+          "front": "おいしいでしょう？",
+          "frontSub": "",
+          "back": "It's delicious, isn't it?",
+          "backSub": "oishii deshō?",
+          "notes": "seeking agreement"
+        }
+      ]
+    },
+    {
+      "name": "Conversation Prep — Plans & Reasons",
+      "notes": "For the 6/25 free-conversation class: つもりです (plans), past tense (events), からです (reasons).",
+      "cards": [
+        {
+          "id": "recap_0618_tsumori_intro",
+          "front": "〜つもりです",
+          "frontSub": "",
+          "frontLabel": "What does it express?",
+          "back": "I plan / intend to [verb]",
+          "backSub": "",
+          "notes": "dictionary-form verb + つもりです"
+        },
+        {
+          "id": "recap_0618_tsumori_ex",
+          "front": "にほんにいくつもりです",
+          "frontSub": "日本に行くつもりです",
+          "back": "I plan to go to Japan",
+          "backSub": "Nihon ni iku tsumori desu",
+          "notes": "dictionary form 行く + つもりです"
+        },
+        {
+          "id": "recap_0618_kara",
+          "front": "〜からです",
+          "frontSub": "",
+          "frontLabel": "What does it express?",
+          "back": "It's because … (reason)",
+          "backSub": "",
+          "notes": "i-adj + からです | na-adj + だからです (see June 11 recap)"
+        }
+      ]
+    },
+    {
+      "name": "Everyday Phrases (NHK Easy 4 & 5)",
+      "notes": "Natural phrases and particle uses from the video summary sheets.",
+      "cards": [
+        {
+          "id": "recap_0618_kore_doko",
+          "front": "これ、どこですか？",
+          "frontSub": "",
+          "back": "Where is this? (casual — は dropped)",
+          "backSub": "kore, doko desu ka?",
+          "notes": "は often omitted casually; question word before ですか"
+        },
+        {
+          "id": "recap_0618_totemo",
+          "front": "とても",
+          "frontSub": "",
+          "back": "very",
+          "backSub": "totemo",
+          "notes": "[noun]は[adjective]です — 京都はとてもきれいですよ"
+        },
+        {
+          "id": "recap_0618_yo_ne",
+          "front": "よ / ね",
+          "frontSub": "",
+          "frontLabel": "final particles?",
+          "back": "よ = emphasis · ね = seek agreement",
+          "backSub": "",
+          "notes": "いいですね = good for you! / そうですね = I agree"
+        },
+        {
+          "id": "recap_0618_tanoshimi",
+          "front": "たのしみです",
+          "frontSub": "楽しみです",
+          "back": "I'm looking forward to it",
+          "backSub": "tanoshimi desu",
+          "notes": "na-adj/noun; 学校が楽しみです (が for the thing)"
+        },
+        {
+          "id": "recap_0618_shinpai",
+          "front": "〜がしんぱいです",
+          "frontSub": "〜が心配です",
+          "back": "I'm worried about ~",
+          "backSub": "~ ga shinpai desu",
+          "notes": "明日の試験が心配です = nervous about tomorrow's exam"
+        },
+        {
+          "id": "recap_0618_doushita",
+          "front": "どうしたんですか",
+          "frontSub": "",
+          "back": "What's wrong?",
+          "backSub": "dōshita n desu ka",
+          "notes": "caring tone = sympathy; questioning tone = doubt"
+        },
+        {
+          "id": "recap_0618_madamada",
+          "front": "まだまだです",
+          "frontSub": "",
+          "back": "Not good enough yet (humble)",
+          "backSub": "mada mada desu",
+          "notes": "humble response to a compliment"
+        },
+        {
+          "id": "recap_0618_de_means",
+          "front": "〜で",
+          "frontSub": "",
+          "frontLabel": "particle で (means)?",
+          "back": "by means of ~ / using ~",
+          "backSub": "",
+          "notes": "ラジオで勉強しました · 日本語で書く · 黒いペンで書く"
+        },
+        {
+          "id": "recap_0618_sorenara",
+          "front": "それなら",
+          "frontSub": "",
+          "back": "if so / in that case",
+          "backSub": "sore nara",
+          "notes": "connects to the previous statement"
+        }
+      ]
+    }
+  ]
+}

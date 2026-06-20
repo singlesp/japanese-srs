@@ -3,6 +3,33 @@
   "name": "Counting & Counters",
   "icon": "🔢",
   "source": "Numbers, the native (つ) counter, and common counters with sound changes.",
+  "summary": [
+    {
+      "h": "Two number systems",
+      "items": [
+        "Sino-Japanese numbers いち・に・さん… combine with counters (3人, 5本).",
+        "Native つ-counter (ひとつ〜とお) counts general objects up to 10 with no extra counter; from 11 use the Sino-Japanese numbers.",
+        "Watch the variable readings: 4 = よん/し, 7 = なな/しち, 9 = きゅう/く."
+      ]
+    },
+    {
+      "h": "Counters change sound after 1, 6, 8, 10 (and 3)",
+      "items": [
+        "本 (long things): いっぽん, さんぼん, ろっぽん, はっぽん, じゅっぽん.",
+        "個 (small things): いっこ, ろっこ, はっこ, じゅっこ.",
+        "匹 (animals): いっぴき, さんびき, ろっぴき, じゅっぴき.",
+        "枚 (flat things) is regular — no sound change."
+      ]
+    },
+    {
+      "h": "Irregulars & easy mix-ups",
+      "items": [
+        "People: ひとり (1), ふたり (2), then 〜にん — but 4 = よにん.",
+        "Age: 〜さい, except 20 = はたち.",
+        "3階 (さんがい, floor) vs 3回 (さんかい, times) — same kanji reading かい, different voicing."
+      ]
+    }
+  ],
   "groups": [
     {
       "name": "Numbers 1–10",
