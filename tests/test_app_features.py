@@ -132,7 +132,16 @@ def test_concept_summary_wiring(built):
     assert 'id="browse-summary"' in built.html
     assert "Concept summary" in built.html
     assert "summary-box" in built.html
-    assert "deck.summary" in built.script
+    assert "function buildSummaryHtml(" in built.script
+
+
+def test_in_study_summary_popup_wiring(built):
+    """The concept summary is reachable mid-study, not only from browse."""
+    assert 'id="study-summary-btn"' in built.html
+    assert 'id="summary-modal"' in built.html
+    assert "function openStudySummary(" in built.script
+    assert "function sessionSummaryDeck(" in built.script
+    assert "function openSummaryModal(" in built.script
 
 
 def test_single_script_block(built):

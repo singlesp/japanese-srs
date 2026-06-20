@@ -643,7 +643,7 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
 .modal-overlay { position:fixed; inset:0; background:rgba(26,26,46,0.55); display:flex;
   align-items:center; justify-content:center; padding:20px; z-index:50; }
 .modal { background:var(--surface); border-radius:18px; box-shadow:var(--shadow-lg);
-  width:100%; max-width:420px; padding:24px; }
+  width:100%; max-width:420px; padding:24px; max-height:85vh; overflow-y:auto; }
 .modal-title { font-size:1.1rem; font-weight:700; color:var(--navy); margin-bottom:14px; }
 .modal-card { background:var(--bg); border-radius:12px; padding:12px 14px; margin-bottom:14px; }
 .modal-card .rc-deck { font-size:0.68rem; color:var(--gray); text-transform:uppercase;
@@ -867,6 +867,7 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
       <div class="session-progress" id="sess-progress">Card 1 of 1</div>
       <div class="session-right">
         <span style="font-size:0.78rem;color:var(--gray)" id="sess-deck-name"></span>
+        <button class="star-btn" id="study-summary-btn" onclick="openStudySummary()" title="Concept summary" style="display:none">📖</button>
         <button class="star-btn" id="study-star" onclick="toggleStudyStar()" title="Add to favorites">☆</button>
       </div>
     </div>
@@ -949,6 +950,17 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
         <button class="btn-modal-send" onclick="sendReport()">Send email ✉</button>
       </div>
       <div class="modal-note">This opens your email app with the card details filled in, ready to send.</div>
+    </div>
+  </div>
+
+  <!-- ── SUMMARY MODAL ──────────────────────────────────────────── -->
+  <div id="summary-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeSummaryModal()">
+    <div class="modal">
+      <div class="modal-title" id="summary-modal-title">📖 Concept summary</div>
+      <div class="summary-body" id="summary-modal-body"></div>
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeSummaryModal()">Close</button>
+      </div>
     </div>
   </div>
 
@@ -1186,6 +1198,21 @@ function escHtml(s) {
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+// Shared renderer for a deck.summary ([{h, items:[...]}]) — used by the browse
+// panel and the in-study summary popup.
+function buildSummaryHtml(summary) {
+  let h = '';
+  for (const sec of (summary || [])) {
+    if (sec.h) h += '<div class="summary-h">' + escHtml(sec.h) + '</div>';
+    if (sec.items && sec.items.length) {
+      h += '<ul class="summary-list">';
+      for (const it of sec.items) h += '<li>' + escHtml(it) + '</li>';
+      h += '</ul>';
+    }
+  }
+  return h;
+}
+
 function runSearch(raw) {
   const q         = (raw || '').trim().toLowerCase();
   const clearBtn  = document.getElementById('search-clear');
@@ -1303,19 +1330,9 @@ function renderBrowse() {
   const sumEl = document.getElementById('browse-summary');
   const summary = deck.summary || [];
   if (summary.length) {
-    let h = '<details class="summary-box" open>' +
-            '<summary class="summary-head">📖 Concept summary</summary>' +
-            '<div class="summary-body">';
-    for (const sec of summary) {
-      if (sec.h) h += '<div class="summary-h">' + escHtml(sec.h) + '</div>';
-      if (sec.items && sec.items.length) {
-        h += '<ul class="summary-list">';
-        for (const it of sec.items) h += '<li>' + escHtml(it) + '</li>';
-        h += '</ul>';
-      }
-    }
-    h += '</div></details>';
-    sumEl.innerHTML = h;
+    sumEl.innerHTML = '<details class="summary-box" open>' +
+      '<summary class="summary-head">📖 Concept summary</summary>' +
+      '<div class="summary-body">' + buildSummaryHtml(summary) + '</div></details>';
     sumEl.style.display = '';
   } else {
     sumEl.innerHTML = '';
@@ -1467,6 +1484,9 @@ function renderCard() {
   starBtn.textContent = fav ? '★' : '☆';
   starBtn.classList.toggle('active', fav);
 
+  const sumDeck = sessionSummaryDeck();
+  document.getElementById('study-summary-btn').style.display = sumDeck ? '' : 'none';
+
   session.flipped   = false;
   session.revealed  = false;
   document.getElementById('rating-row').classList.add('hidden');
@@ -1583,6 +1603,32 @@ function sendReport() {
   const url = 'mailto:' + REPORT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   window.location.href = url;
   closeReportModal();
+}
+
+// ================================================================
+// CONCEPT SUMMARY POPUP (reachable mid-study)
+// ================================================================
+// The deck behind the current session, if it carries a concept summary.
+function sessionSummaryDeck() {
+  if (session.deckIds && session.deckIds.length === 1) {
+    const d = DECKS.find(x => x.id === session.deckIds[0]);
+    if (d && d.summary && d.summary.length) return d;
+  }
+  return null;
+}
+function openStudySummary() {
+  const d = sessionSummaryDeck();
+  if (d) openSummaryModal(d.id);
+}
+function openSummaryModal(deckId) {
+  const deck = DECKS.find(d => d.id === deckId);
+  if (!deck || !deck.summary || !deck.summary.length) return;
+  document.getElementById('summary-modal-title').textContent = '📖 ' + deck.name;
+  document.getElementById('summary-modal-body').innerHTML = buildSummaryHtml(deck.summary);
+  document.getElementById('summary-modal').style.display = 'flex';
+}
+function closeSummaryModal() {
+  document.getElementById('summary-modal').style.display = 'none';
 }
 
 // ================================================================

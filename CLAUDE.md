@@ -203,7 +203,7 @@ To include a word in the drills, add it to the relevant `CURATED_*` list (it mus
 
 ## Concept summaries
 
-Any deck may carry an optional top-level `summary`: a list of `{"h": heading, "items": [bullets]}` sections. It renders as a collapsible "📖 Concept summary" panel at the top of that deck's **browse** view (`renderBrowse` → `#browse-summary`). Use it for concept-heavy decks (conjugation, counting, recaps) — not plain vocab. Summaries for the drill decks are defined in `build_app.py` (`VERB_DRILL_SUMMARY`, `ADJ_DRILL_SUMMARY`); for counting/recaps they live in the JSON. The build passes `summary` through for vocab and recap decks.
+Any deck may carry an optional top-level `summary`: a list of `{"h": heading, "items": [bullets]}` sections. `buildSummaryHtml()` renders it in two places: (1) a collapsible "📖 Concept summary" panel atop that deck's **browse** view (`#browse-summary`), and (2) a **📖 popup reachable mid-study** — a button in the study header (`#study-summary-btn`, shown only when the session's single deck has a summary, via `sessionSummaryDeck()`) opens `#summary-modal`. Use summaries for concept-heavy decks (conjugation, counting, recaps) — not plain vocab. Drill-deck summaries are defined in `build_app.py` (`VERB_DRILL_SUMMARY`, `ADJ_DRILL_SUMMARY`); counting/recap summaries live in their JSON. The build passes `summary` through for vocab and recap decks.
 
 ## Counting deck
 
