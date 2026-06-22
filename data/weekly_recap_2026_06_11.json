@@ -12,6 +12,40 @@
     "Particle から — giving reasons",
     "て-form + います — progressive/ongoing actions"
   ],
+  "summary": [
+    {
+      "h": "Particle の — possessive & descriptive",
+      "items": [
+        "Possessive: わたしのはは = my mother (わたし owns はは).",
+        "Descriptive: にほんじんのはは = Japanese mother (にほんじん describes はは)."
+      ]
+    },
+    {
+      "h": "「Want to」— たい / たいです",
+      "items": [
+        "Group I (U-verbs): i-form + たい — いく → いきたいです (I want to go).",
+        "Group II (Ru-verbs): drop る + たい — たべる → たべたいです (I want to eat).",
+        "たい is casual; add です to be polite."
+      ]
+    },
+    {
+      "h": "Particle から — giving reasons",
+      "items": [
+        "i-adjective: adj + からです — おもしろいからです (because it's interesting).",
+        "na-adjective: adj + だからです — きれいだからです (because it's pretty).",
+        "Verb (present/future): dictionary form + からです — いくからです.",
+        "Verb (past): た-form + からです — いったからです."
+      ]
+    },
+    {
+      "h": "Progressive — て-form + います",
+      "items": [
+        "て-form + いる (casual) / います (polite) = an ongoing action or current state.",
+        "すむ → すんでいます (I live in ~), たべる → たべています (I'm eating).",
+        "Note: plain すむ implies you intend to live there in the future, not now."
+      ]
+    }
+  ],
   "groups": [
     {
       "name": "Particle の",

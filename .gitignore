@@ -1,2 +1,3 @@
 .DS_Store
 tests/__pycache__/
+_perm_test.txt
