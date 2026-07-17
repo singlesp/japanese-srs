@@ -1,0 +1,203 @@
+{
+  "id": "recap_2026_07_02",
+  "name": "Class Recap — July 2",
+  "icon": "📅",
+  "date": "2026-07-02",
+  "next_class": "2026-07-09",
+  "teacher": "Atsuko T",
+  "homework": "Review Easy Japanese #35 (attached to the class email) and Lesson 5. Next class (7/9): share stories, watch Easy Japanese skit #37 (〜んですが to explain a problem and ask for help politely), and review verb conjugation.",
+  "topics_covered": [
+    "〜たい / たいです (want to)",
+    "が vs を with たい",
+    "Connecting verbs with て",
+    "それから vs そして",
+    "んです → のです (nominalizer の)",
+    "中 (なか) vs 内側 (うちがわ)"
+  ],
+  "summary": [
+    {
+      "h": "〜たい — want to do",
+      "items": [
+        "Form: u-verbs → い-form + たい; ru-verbs → drop る + たい. Add です to be polite (たいです).",
+        "The object of たい usually takes が (たまごが食べたい), though を is also possible.",
+        "何がしたい？ = What do you want to do? — a casual phrase among friends."
+      ]
+    },
+    {
+      "h": "Connecting verbs — て / それから / そして",
+      "items": [
+        "The て-form joins two action verbs in one sentence: 大涌谷に行って、黒たまごが食べたいです。",
+        "それから = then / after that — a chronological sequence (order matters).",
+        "そして = and / also / furthermore — simple addition (order does not matter)."
+      ]
+    },
+    {
+      "h": "んです / のです and the nominalizer の",
+      "items": [
+        "In formal speech ん can become の: 黒いんですか → 黒いのですか. This の works like こと (a matter/fact).",
+        "黒いんですか？ adds the speaker's emotion — eager to confirm what they heard.",
+        "の also nominalizes an adjective: 黒いのが好きです = I like the black one. You cannot say 黒いは — add の."
+      ]
+    },
+    {
+      "h": "Inside & outside — 中 vs 内側",
+      "items": [
+        "外側 (そとがわ, outer side) ⇄ 内側 (うちがわ, inner side). 内側 is a surface/side relative to a boundary.",
+        "中 (なか) is the 3D space inside: 箱の中 = inside the box. 箱の内側 = the box's inner surface.",
+        "なか中は普通のゆで卵 = the inside is an ordinary boiled egg."
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "〜たい — Want To Do",
+      "notes": "い-form / drop る + たい(です). The object often takes が.",
+      "cards": [
+        {
+          "id": "recap_0702_tai_form",
+          "front": "〜たい / 〜たいです",
+          "frontSub": "",
+          "frontLabel": "How do you form it?",
+          "back": "verb stem + たい = want to [verb]",
+          "backSub": "",
+          "notes": "u-verbs → い-form + たい; ru-verbs → drop る + たい. たいです = polite."
+        },
+        {
+          "id": "recap_0702_tai_ex",
+          "front": "なにがしたい？",
+          "frontSub": "何がしたい？",
+          "back": "What do you want to do?",
+          "backSub": "nani ga shitai?",
+          "notes": "A casual phrase among friends."
+        },
+        {
+          "id": "recap_0702_tai_ga",
+          "front": "が vs を（〜たい）",
+          "frontSub": "",
+          "frontLabel": "which particle?",
+          "back": "が is usual for the object of たい (を also OK)",
+          "backSub": "",
+          "notes": "たまごが食べたい / たまごを食べたい — both are possible."
+        },
+        {
+          "id": "recap_0702_tai_tabe",
+          "front": "くろたまごがたべたいです",
+          "frontSub": "黒たまごが食べたいです",
+          "back": "I want to eat a black egg",
+          "backSub": "kuro tamago ga tabetai desu",
+          "notes": "食べる → 食べ + たいです"
+        }
+      ]
+    },
+    {
+      "name": "Connecting Verbs — て / それから / そして",
+      "notes": "て joins two actions; それから orders them in time; そして simply adds.",
+      "cards": [
+        {
+          "id": "recap_0702_te_connect",
+          "front": "いって、たべたいです",
+          "frontSub": "行って、食べたいです",
+          "back": "want to go and (then) eat — joined with て",
+          "backSub": "itte, tabetai desu",
+          "notes": "て-form connects two action verbs: 大涌谷に行って、黒たまごが食べたいです。"
+        },
+        {
+          "id": "recap_0702_sorekara",
+          "front": "それから",
+          "frontSub": "",
+          "frontLabel": "meaning?",
+          "back": "then / after that (time order)",
+          "backSub": "sore kara",
+          "notes": "Chronological sequence — actions happen in a specific order."
+        },
+        {
+          "id": "recap_0702_soshite",
+          "front": "そして",
+          "frontSub": "",
+          "frontLabel": "meaning?",
+          "back": "and / also / furthermore (addition)",
+          "backSub": "soshite",
+          "notes": "Parallel addition — connects facts/qualities equally, no time order."
+        }
+      ]
+    },
+    {
+      "name": "んです / のです & the Nominalizer の",
+      "notes": "In formal speech ん → の. の nominalizes (like こと) the word before it.",
+      "cards": [
+        {
+          "id": "recap_0702_ndesu_no",
+          "front": "〜んです → 〜のです",
+          "frontSub": "",
+          "frontLabel": "formal form?",
+          "back": "ん becomes の in formal speech",
+          "backSub": "",
+          "notes": "黒いんですか → 黒いのですか. This の = こと (it nominalizes)."
+        },
+        {
+          "id": "recap_0702_kuroi_q",
+          "front": "たまごはくろいんですか？",
+          "frontSub": "卵は黒いんですか？",
+          "back": "Are the eggs really black?",
+          "backSub": "tamago wa kuroi n desu ka?",
+          "notes": "んですか adds the speaker's eagerness to confirm what they heard."
+        },
+        {
+          "id": "recap_0702_nominalize",
+          "front": "くろいのがすきです",
+          "frontSub": "黒いのが好きです",
+          "back": "I like the black one",
+          "backSub": "kuroi no ga suki desu",
+          "notes": "の nominalizes 黒い (the black one). You cannot say 黒いは — add の."
+        }
+      ]
+    },
+    {
+      "name": "Inside & Outside — 中 vs 内側",
+      "notes": "外側 ⇄ 内側 (a surface/side); 中 = the 3D space inside.",
+      "cards": [
+        {
+          "id": "recap_0702_sotogawa",
+          "front": "そとがわ",
+          "frontSub": "外側",
+          "back": "outside / outer side",
+          "backSub": "sotogawa",
+          "notes": "The opposite of 内側."
+        },
+        {
+          "id": "recap_0702_uchigawa",
+          "front": "うちがわ",
+          "frontSub": "内側",
+          "back": "inside / inner side (surface)",
+          "backSub": "uchigawa",
+          "notes": "A surface/side relative to a boundary; implies an outer side (外側)."
+        },
+        {
+          "id": "recap_0702_naka",
+          "front": "なか",
+          "frontSub": "中",
+          "back": "inside / center / among",
+          "backSub": "naka",
+          "notes": "A 3D space inside: 箱の中 = inside the box."
+        },
+        {
+          "id": "recap_0702_naka_uchi",
+          "front": "中 vs 内側",
+          "frontSub": "",
+          "frontLabel": "difference?",
+          "back": "中 = the space/volume inside; 内側 = the inner surface/side",
+          "backSub": "",
+          "notes": "箱の中 = the items inside; 箱の内側 = the box's inner surface."
+        },
+        {
+          "id": "recap_0702_yudetamago",
+          "front": "ゆでたまご",
+          "frontSub": "ゆで卵",
+          "back": "boiled egg",
+          "backSub": "yude tamago",
+          "notes": "中は普通のゆで卵 = the inside is an ordinary boiled egg."
+        }
+      ]
+    }
+  ]
+}

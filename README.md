@@ -11,7 +11,12 @@ The first time you open it, a brief intro explains how spaced repetition works. 
 - **Due Now / Learning / Mastered** — your overall progress across all decks
 - **Study all due cards** — review everything due in one session
 - **Class Review** — decks built from each week's class recap, with topics and homework reminders
+- **Hiragana & Katakana** — full kana reading decks (for the A0 class)
 - Individual vocabulary and conjugation decks
+
+### Romaji on vocabulary cards
+
+New learners can turn on **Romaji on front** (the switch next to the "Vocabulary" heading on the home screen) to show the romaji reading on the *front* of vocabulary flashcards. It is **off by default**, applies to vocabulary decks only (not kana, conjugation, or recap cards), and your choice is remembered in this browser.
 
 ### Rating cards
 
@@ -34,6 +39,8 @@ Progress lives in your browser. If you want to transfer it to another browser or
 
 | Deck | Cards |
 |------|-------|
+| Hiragana ひらがな (full: basic + dakuten + combos) | 104 |
+| Katakana カタカナ (full: basic + dakuten + combos) | 104 |
 | Pronouns & Demonstratives | 25 |
 | Countries & Languages | 27 |
 | Family | 28 |

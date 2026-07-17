@@ -209,6 +209,23 @@ Any deck may carry an optional top-level `summary`: a list of `{"h": heading, "i
 
 `data/vocab_counting.json` (deck id `counting`, a normal vocab deck) covers numbers 1–10 and beyond, the native `〜つ` counter, and the counters 人・歳・本・個・枚・匹・階・回 with their sound changes (`いっぽん`, `さんびき`, `さんがい`, …). Card ids are `count_*`. Note 3階 (`さんがい`) vs 3回 (`さんかい`) is an intentional teaching contrast.
 
+## Kana decks (hiragana / katakana)
+
+Two decks (`kana_hiragana`, `kana_katakana`, `type: 'kana'`) are generated entirely in `build_app.py` from the hand-authored `KANA_BASIC` / `KANA_DAKUTEN` / `KANA_YOON` tables — no JSON source files. Each covers the full set: 46 basic gojūon + 25 dakuten/handakuten + 33 yōon combos = **104 cards each**. Katakana glyphs are derived from the hiragana table via `to_kata()` (a fixed +0x60 codepoint shift), so only hiragana is authored.
+
+- **Card front** = the kana glyph; **back** = Hepburn romaji. Cards carry `tag: 'Reading'` so the study front shows "Reading" instead of "Vocabulary".
+- **IDs** are `hira_<key>` / `kata_<key>` where `<key>` is the romaji, except the four homophones which get explicit distinct keys in the tables: じ=`ji`, ぢ=`dji`, ず=`zu`, づ=`dzu`. Never change these keys (progress is keyed on them).
+- Each deck has a concept `summary` (`HIRAGANA_SUMMARY` / `KATAKANA_SUMMARY`) shown in browse + mid-study.
+- Home renders them in their own "Hiragana & Katakana" section (`deck-list-kana`, filtered by `type==='kana'`), placed above Vocabulary.
+
+To edit the kana sets, change the tables in `build_app.py` and rebuild. Kana cards deliberately get **no** `romaji` field (romaji is already the answer), so the romaji-front toggle never affects them.
+
+## Romaji-on-front toggle (vocabulary only)
+
+`build_app.py` attaches a derived Hepburn `romaji` field to every **vocab-type** card (from its kana `front`, via `kana_to_romaji()`). The home screen has a "Romaji on front" switch in the Vocabulary section header, persisted in `localStorage['jp_srs_romaji_front']` (**default off**). When on, the romaji is shown on the **front** of the flashcard (study screen `#cf-romaji`, and each browse row `.browse-romaji`).
+
+Scoping is automatic: only vocab decks get a `romaji` field, so kana/conjugation/recap cards never show front romaji even inside a mixed `__all__`/`__favs__` session. `kana_to_romaji()` handles yōon combos, the small tsu (っ→doubled consonant), the long-vowel mark (ー), and loanword small-vowel combos (フィ→fi). Derived readings are verified to match the curated `backSub` romaji on the noun decks (modulo spacing). The toggle updates the current study card / browse view live via `updateFrontRomaji()` / `renderBrowse()`.
+
 ## Common tasks for future sessions
 
 **Add a new week's recap:** Create `data/weekly_recap_YYYY_MM_DD.json`, rebuild.

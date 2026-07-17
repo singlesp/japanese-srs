@@ -75,6 +75,166 @@ def flatten(deck_data):
             })
     return cards
 
+# ── Kana (hiragana / katakana) ────────────────────────────────────
+# Full kana sets for the A0 class: the 46 basic gojuon, the dakuten /
+# handakuten voiced kana, and the yoon combination sounds. Katakana glyphs are
+# derived from hiragana by a fixed +0x60 codepoint shift, so only the hiragana
+# table below is authored by hand. IDs use a stable romaji key (prefixed
+# hira_ / kata_); homophones (じ/ぢ, ず/づ) get disambiguated keys.
+
+def to_kata(hira):
+    """Hiragana string -> katakana string (per-codepoint +0x60 shift)."""
+    return ''.join(chr(ord(ch) + 0x60) if 0x3041 <= ord(ch) <= 0x3096 else ch
+                   for ch in hira)
+
+# Each entry: (hiragana, romaji, id_key). id_key defaults to romaji; only the
+# four homophones need an explicit distinct key.
+KANA_BASIC = [
+    ('あ','a'),  ('い','i'),  ('う','u'),  ('え','e'),  ('お','o'),
+    ('か','ka'), ('き','ki'), ('く','ku'), ('け','ke'), ('こ','ko'),
+    ('さ','sa'), ('し','shi'),('す','su'), ('せ','se'), ('そ','so'),
+    ('た','ta'), ('ち','chi'),('つ','tsu'),('て','te'), ('と','to'),
+    ('な','na'), ('に','ni'), ('ぬ','nu'), ('ね','ne'), ('の','no'),
+    ('は','ha'), ('ひ','hi'), ('ふ','fu'), ('へ','he'), ('ほ','ho'),
+    ('ま','ma'), ('み','mi'), ('む','mu'), ('め','me'), ('も','mo'),
+    ('や','ya'), ('ゆ','yu'), ('よ','yo'),
+    ('ら','ra'), ('り','ri'), ('る','ru'), ('れ','re'), ('ろ','ro'),
+    ('わ','wa'), ('を','wo'),
+    ('ん','n'),
+]
+KANA_DAKUTEN = [
+    ('が','ga'), ('ぎ','gi'), ('ぐ','gu'), ('げ','ge'), ('ご','go'),
+    ('ざ','za'), ('じ','ji'), ('ず','zu'), ('ぜ','ze'), ('ぞ','zo'),
+    ('だ','da'), ('ぢ','ji','dji'), ('づ','zu','dzu'), ('で','de'), ('ど','do'),
+    ('ば','ba'), ('び','bi'), ('ぶ','bu'), ('べ','be'), ('ぼ','bo'),
+    ('ぱ','pa'), ('ぴ','pi'), ('ぷ','pu'), ('ぺ','pe'), ('ぽ','po'),
+]
+KANA_YOON = [
+    ('きゃ','kya'),('きゅ','kyu'),('きょ','kyo'),
+    ('ぎゃ','gya'),('ぎゅ','gyu'),('ぎょ','gyo'),
+    ('しゃ','sha'),('しゅ','shu'),('しょ','sho'),
+    ('じゃ','ja'), ('じゅ','ju'), ('じょ','jo'),
+    ('ちゃ','cha'),('ちゅ','chu'),('ちょ','cho'),
+    ('にゃ','nya'),('にゅ','nyu'),('にょ','nyo'),
+    ('ひゃ','hya'),('ひゅ','hyu'),('ひょ','hyo'),
+    ('びゃ','bya'),('びゅ','byu'),('びょ','byo'),
+    ('ぴゃ','pya'),('ぴゅ','pyu'),('ぴょ','pyo'),
+    ('みゃ','mya'),('みゅ','myu'),('みょ','myo'),
+    ('りゃ','rya'),('りゅ','ryu'),('りょ','ryo'),
+]
+ALL_KANA_ROWS = KANA_BASIC + KANA_DAKUTEN + KANA_YOON
+
+# Lookup used by kana_to_romaji(): every hira + kata glyph -> romaji.
+KANA_ROMAJI = {}
+for _row in ALL_KANA_ROWS:
+    _hira, _rom = _row[0], _row[1]
+    KANA_ROMAJI[_hira] = _rom
+    KANA_ROMAJI[to_kata(_hira)] = _rom
+
+_SMALL_Y = set('ゃゅょャュョ')
+# Extended combos with small vowels (loanwords): フィ=fi, ティ=ti, ジェ=je, ウィ=wi…
+_SMALL_V = {'ぁ':'a','ぃ':'i','ぅ':'u','ぇ':'e','ぉ':'o',
+            'ァ':'a','ィ':'i','ゥ':'u','ェ':'e','ォ':'o'}
+
+def kana_to_romaji(text):
+    """Convert a kana string to Hepburn romaji. Non-kana characters (spaces,
+    slashes, the ~ mark, stray kanji) pass through unchanged. Handles yoon
+    combos (きゃ), the small tsu (っ -> doubled consonant) and the katakana
+    long-vowel mark (ー -> repeated vowel)."""
+    res = ''
+    i = 0
+    gem = False
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        two = text[i:i+2]
+        syl = None
+        adv = 1
+        if len(two) == 2 and two[1] in _SMALL_Y and two in KANA_ROMAJI:
+            syl = KANA_ROMAJI[two]; adv = 2
+        elif len(two) == 2 and two[1] in _SMALL_V and ch in KANA_ROMAJI:
+            base = KANA_ROMAJI[ch]; v = _SMALL_V[two[1]]
+            if ch in ('う', 'ウ'):
+                syl = 'w' + v
+            else:
+                stem = base[:-1] if base and base[-1] in 'aeiou' else base
+                syl = stem + v
+            adv = 2
+        elif ch in ('っ', 'ッ'):
+            gem = True; i += 1; continue
+        elif ch in ('ー', 'ｰ'):
+            if res and res[-1] in 'aeiou':
+                res += res[-1]
+            i += 1; continue
+        elif ch in KANA_ROMAJI:
+            syl = KANA_ROMAJI[ch]
+        else:
+            res += ch; i += 1; continue
+        if gem and syl:
+            res += ('t' if syl.startswith('ch') else syl[0])
+            gem = False
+        res += syl
+        i += adv
+    return res
+
+def _kana_note(id_key, is_kata):
+    notes = {
+        'wo':  ('Almost never used in modern Japanese.' if is_kata
+                else 'Used almost only as the object particle (pronounced “o”).'),
+        'n':   'The only kana that stands alone as a consonant.',
+        'dji': 'Same sound as じ (ji); rare — the だ-row variant.',
+        'dzu': 'Same sound as ず (zu); rare — the だ-row variant.',
+    }
+    return notes.get(id_key, '')
+
+def build_kana_deck(is_kata):
+    prefix = 'kata' if is_kata else 'hira'
+    cards = []
+    for row in ALL_KANA_ROWS:
+        hira, rom = row[0], row[1]
+        id_key = row[2] if len(row) > 2 else rom
+        glyph  = to_kata(hira) if is_kata else hira
+        cards.append({
+            'id':         f"{prefix}_{id_key}",
+            'front':      glyph,
+            'frontSub':   '',
+            'frontLabel': '',
+            'back':       rom,
+            'backSub':    '',
+            'notes':      _kana_note(id_key, is_kata),
+            'tag':        'Reading',   # shows on the card front instead of "Vocabulary"
+        })
+    return cards
+
+HIRAGANA_SUMMARY = [
+    {'h': 'What is hiragana?', 'items': [
+        'Hiragana is the basic phonetic alphabet for Japanese — every sound in the language can be written with it.',
+        'Used for grammar (particles, verb endings) and for native words without kanji.',
+    ]},
+    {'h': 'How it is organized', 'items': [
+        'The 46 basic kana (gojuon) are grouped into rows by consonant: か・き・く・け・こ, さ・し・す・せ・そ, and so on.',
+        'Watch the irregular readings: し = shi, ち = chi, つ = tsu, ふ = fu.',
+    ]},
+    {'h': 'Voiced & combination sounds', 'items': [
+        'Dakuten ゛ turns か→が, さ→ざ, た→だ, は→ば; handakuten ゜ turns は→ぱ.',
+        'Small ゃ/ゅ/ょ join with an i-row kana to make one sound: き+ゃ = きゃ (kya), し+ょ = しょ (sho).',
+    ]},
+]
+KATAKANA_SUMMARY = [
+    {'h': 'What is katakana?', 'items': [
+        'Katakana writes the same sounds as hiragana, but is used for loanwords, foreign names, onomatopoeia, and emphasis.',
+        'アメリカ (America), コーヒー (coffee), テレビ (TV) are all katakana.',
+    ]},
+    {'h': 'Same sounds, different shapes', 'items': [
+        'The rows match hiragana one-for-one: ア・イ・ウ・エ・オ = a i u e o.',
+        'The long vowel mark ー stretches a sound: コーヒー = ko–o–hi–i (koohii).',
+    ]},
+    {'h': 'Voiced & combination sounds', 'items': [
+        'Dakuten / handakuten work exactly as in hiragana: カ→ガ, ハ→バ→パ.',
+        'Small ャ/ュ/ョ combine the same way: キ+ャ = キャ (kya), シ+ョ = ショ (sho).',
+    ]},
+]
+
 # ── Build DECKS array ─────────────────────────────────────────────
 decks = []
 
@@ -88,6 +248,24 @@ for d in [pronouns, countries, family, occs, time_v, location, counting]:
         'summary': d.get('summary', []),
         'cards':   flatten(d)
     })
+
+# 1b. Kana decks (hiragana / katakana) — foundational for the A0 class
+decks.append({
+    'id':      'kana_hiragana',
+    'name':    'Hiragana ひらがな',
+    'icon':    'あ',
+    'type':    'kana',
+    'summary': HIRAGANA_SUMMARY,
+    'cards':   build_kana_deck(is_kata=False),
+})
+decks.append({
+    'id':      'kana_katakana',
+    'name':    'Katakana カタカナ',
+    'icon':    'ア',
+    'type':    'kana',
+    'summary': KATAKANA_SUMMARY,
+    'cards':   build_kana_deck(is_kata=True),
+})
 
 # 2. Adjective vocab decks
 def _safe(s):
@@ -378,6 +556,16 @@ for recap in recaps:
     decks.append(deck)
     recap_deck_ids.append(recap['id'])
 
+# ── Romaji on vocab card fronts ───────────────────────────────────
+# Attach a derived Hepburn romaji reading to every vocabulary card (from its
+# kana front). The app shows this on the FRONT only when the user turns on the
+# "Romaji on front" toggle (default off), and only for vocab decks — kana,
+# conjugation and recap cards get no `romaji` field, so they are unaffected.
+for d in decks:
+    if d['type'] == 'vocab':
+        for c in d['cards']:
+            c['romaji'] = kana_to_romaji(c['front'])
+
 # ── Stats ─────────────────────────────────────────────────────────
 total = sum(len(d['cards']) for d in decks)
 print(f"Total decks: {len(decks)}, Total cards: {total}")
@@ -550,6 +738,25 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
 /* ── Section title ────────────────────────────────────────────── */
 .section-title { font-size:0.75rem; font-weight:600; color:var(--gray);
   text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; }
+.section-title-row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+
+/* ── Romaji toggle switch ─────────────────────────────────────── */
+.romaji-switch { display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  text-transform:none; letter-spacing:0; font-weight:600; font-size:0.72rem; color:var(--gray); }
+.romaji-switch input { position:absolute; opacity:0; width:0; height:0; }
+.romaji-switch .track { width:38px; height:22px; border-radius:22px; background:var(--border);
+  position:relative; transition:background 0.15s; flex-shrink:0; }
+.romaji-switch .thumb { position:absolute; top:2px; left:2px; width:18px; height:18px;
+  border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.25); transition:transform 0.15s; }
+.romaji-switch input:checked + .track { background:var(--blue); }
+.romaji-switch input:checked + .track .thumb { transform:translateX(16px); }
+.romaji-switch input:focus-visible + .track { box-shadow:0 0 0 3px rgba(69,123,157,0.3); }
+
+/* ── Romaji on card front / browse ────────────────────────────── */
+.card-romaji { font-family:var(--ui); font-size:1.05rem; font-weight:600; color:var(--blue);
+  letter-spacing:0.02em; margin-top:8px; text-align:center; }
+.browse-romaji { font-family:var(--ui); font-size:0.82rem; font-weight:600; color:var(--blue);
+  margin-top:3px; }
 
 /* ── Deck list ────────────────────────────────────────────────── */
 .deck-grid { display:flex; flex-direction:column; gap:8px; margin-bottom:32px; }
@@ -831,7 +1038,17 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
 
     <div class="recap-section" id="recap-section"></div>
 
-    <div class="section-title">Vocabulary</div>
+    <div class="section-title">Hiragana &amp; Katakana</div>
+    <div class="deck-grid" id="deck-list-kana"></div>
+
+    <div class="section-title section-title-row">
+      <span>Vocabulary</span>
+      <label class="romaji-switch" title="Show romaji on the front of vocabulary cards">
+        <span>Romaji on front</span>
+        <input type="checkbox" id="romaji-toggle" onchange="setRomajiFront(this.checked)">
+        <span class="track"><span class="thumb"></span></span>
+      </label>
+    </div>
     <div class="deck-grid" id="deck-list-vocab"></div>
 
     <div class="section-title">Verb Conjugation</div>
@@ -877,6 +1094,7 @@ body { font-family: var(--ui); background: var(--bg); color: var(--navy); min-he
           <div class="card-tag" id="cf-tag"></div>
           <div class="card-front-label" id="cf-label"></div>
           <div class="card-main" id="cf-main"></div>
+          <div class="card-romaji" id="cf-romaji" style="display:none"></div>
           <div class="card-sub"  id="cf-sub"></div>
           <div class="card-hint">tap to flip</div>
         </div>
@@ -1135,12 +1353,41 @@ function renderHome() {
     }
   }
 
+  const kanaIds  = DECKS.filter(d => d.type==='kana').map(d => d.id);
   const vocabIds = DECKS.filter(d => d.type==='vocab').map(d => d.id);
   const vconjIds = DECKS.filter(d => d.type==='conjugation' && d.id.endsWith('_verbs')).map(d => d.id);
   const aconjIds = DECKS.filter(d => d.type==='conjugation' && d.id.endsWith('_adj')).map(d => d.id);
+  renderDeckList('deck-list-kana', kanaIds);
   renderDeckList('deck-list-vocab', vocabIds);
   renderDeckList('deck-list-vconj', vconjIds);
   renderDeckList('deck-list-aconj', aconjIds);
+
+  const romajiToggle = document.getElementById('romaji-toggle');
+  if (romajiToggle) romajiToggle.checked = romajiFrontOn();
+}
+
+// ================================================================
+// ROMAJI-ON-FRONT SETTING (vocabulary cards only, default off)
+// ================================================================
+const ROMAJI_KEY = 'jp_srs_romaji_front';
+function romajiFrontOn() { return localStorage.getItem(ROMAJI_KEY) === '1'; }
+function setRomajiFront(on) {
+  localStorage.setItem(ROMAJI_KEY, on ? '1' : '0');
+  // Live-update whatever is on screen.
+  if (document.getElementById('screen-study').classList.contains('active')) updateFrontRomaji();
+  if (document.getElementById('screen-browse').classList.contains('active')) renderBrowse();
+}
+// Show/hide the romaji line on the current study card front.
+function updateFrontRomaji() {
+  const el = document.getElementById('cf-romaji');
+  if (!el) return;
+  const card = session.queue[session.idx];
+  if (card && romajiFrontOn() && card.romaji) {
+    el.textContent = card.romaji;
+    el.style.display = '';
+  } else {
+    el.style.display = 'none';
+  }
 }
 
 function renderDeckList(containerId, deckIds) {
@@ -1355,6 +1602,7 @@ function renderBrowse() {
     const fav   = isFav(c.id);
     const label = c.frontLabel ? '<div class="browse-label">' + escHtml(c.frontLabel) + '</div>' : '';
     const fsub  = c.frontSub   ? '<span class="browse-fsub">' + escHtml(c.frontSub) + '</span>' : '';
+    const rom   = (romajiFrontOn() && c.romaji) ? '<div class="browse-romaji">' + escHtml(c.romaji) + '</div>' : '';
     const bsub  = c.backSub    ? '<span class="browse-bsub">' + escHtml(c.backSub) + '</span>' : '';
     const notes = c.notes      ? '<div class="browse-notes">' + escHtml(c.notes) + '</div>' : '';
     const row   = document.createElement('div');
@@ -1364,7 +1612,7 @@ function renderBrowse() {
       '<div class="browse-headrow">' +
         '<button class="browse-star' + (fav ? ' active' : '') + '" title="Favorite">' + (fav ? '★' : '☆') + '</button>' +
         '<div class="browse-main">' + label +
-          '<div class="browse-front">' + escHtml(c.front) + fsub + '</div>' +
+          '<div class="browse-front">' + escHtml(c.front) + fsub + '</div>' + rom +
         '</div>' +
         '<span class="browse-status ' + st.cls + '">' + st.txt + '</span>' +
         '<span class="browse-chev">▶</span>' +
@@ -1464,9 +1712,10 @@ function renderCard() {
   document.getElementById('sess-again').textContent = session.stats[0] + ' again';
   document.getElementById('sess-good').textContent  = (session.stats[2]+session.stats[3]) + ' good';
 
-  document.getElementById('cf-tag').textContent   = card.frontLabel ? 'Grammar' : 'Vocabulary';
+  document.getElementById('cf-tag').textContent   = card.tag || (card.frontLabel ? 'Grammar' : 'Vocabulary');
   document.getElementById('cf-label').textContent = card.frontLabel || '';
   document.getElementById('cf-main').textContent  = card.front;
+  updateFrontRomaji();
 
   const cfSub = document.getElementById('cf-sub');
   if (card.frontSub) { cfSub.textContent = card.frontSub; cfSub.style.display=''; }

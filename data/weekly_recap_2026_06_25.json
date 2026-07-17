@@ -1,0 +1,110 @@
+{
+  "id": "recap_2026_06_25",
+  "name": "Class Recap — June 25",
+  "icon": "📅",
+  "date": "2026-06-25",
+  "next_class": "2026-07-02",
+  "teacher": "Atsuko T",
+  "homework": "Review Lesson 5 (て-form and た-form) and prepare your story to share. Next class (7/2): Easy Japanese skits #35 & #36 to practice 〜たい (want to), connecting verbs with て, and た-form + ことがあります.",
+  "topics_covered": [
+    "Free conversation — sharing stories",
+    "主人公 vs 主役 (main character)",
+    "Prep: 〜たい (want to)",
+    "Prep: connecting verbs with て",
+    "Prep: た-form + ことがあります"
+  ],
+  "summary": [
+    {
+      "h": "主人公 vs 主役 — a correction",
+      "items": [
+        "Atsuko corrected last week's term for 'main character.' The better word is 主人公 (しゅじんこう), not 主役 (しゅやく).",
+        "主人公 (shujinkou): focuses on the plot — who the story is about (protagonist).",
+        "主役 (shuyaku): focuses on the spotlight — who gets the most screen time, billing, or attention (lead role / star).",
+        "They overlap in casual speech, but 主人公 is about the narrative and 主役 is about the performance."
+      ]
+    },
+    {
+      "h": "Getting ready for 7/2",
+      "items": [
+        "〜たい / 〜たいです = 'want to.' u-verbs → い-form + たい; ru-verbs → drop る + たい.",
+        "The object of たい usually takes が (何がしたい？), though を is also possible.",
+        "Connect two action verbs with the て-form: 大涌谷に行って、黒たまごが食べたいです。",
+        "Review: た-form + ことがあります = have done / have the experience of doing something."
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "主人公 vs 主役 — Main Character",
+      "notes": "Atsuko corrected the term for 'main character.'",
+      "cards": [
+        {
+          "id": "recap_0625_shujinkou",
+          "front": "しゅじんこう",
+          "frontSub": "主人公",
+          "back": "protagonist / main character (of the story)",
+          "backSub": "shujinkou",
+          "notes": "Focuses on the plot — who the story is about."
+        },
+        {
+          "id": "recap_0625_shuyaku",
+          "front": "しゅやく",
+          "frontSub": "主役",
+          "back": "lead role / star (in a performance)",
+          "backSub": "shuyaku",
+          "notes": "Focuses on the spotlight — most screen time, billing, or attention."
+        },
+        {
+          "id": "recap_0625_shu_diff",
+          "front": "主人公 vs 主役",
+          "frontSub": "",
+          "frontLabel": "What's the difference?",
+          "back": "主人公 = the story's focus; 主役 = the performance's spotlight",
+          "backSub": "",
+          "notes": "Similar meanings, interchangeable casually — but 主人公 = plot, 主役 = attention/role."
+        }
+      ]
+    },
+    {
+      "name": "Prep for 7/2 — Phrases to Practice",
+      "notes": "For Easy Japanese #35/#36: 〜たい, connecting verbs with て, and た-form + ことがあります.",
+      "cards": [
+        {
+          "id": "recap_0625_tai_intro",
+          "front": "〜たい / 〜たいです",
+          "frontSub": "",
+          "frontLabel": "What does it express?",
+          "back": "want to [verb]",
+          "backSub": "",
+          "notes": "u-verbs → い-form + たい; ru-verbs → drop る + たい. Object often takes が: 何がしたい？"
+        },
+        {
+          "id": "recap_0625_tai_ex",
+          "front": "なにがしたいですか？",
+          "frontSub": "何がしたいですか？",
+          "back": "What do you want to do?",
+          "backSub": "nani ga shitai desu ka?",
+          "notes": "が commonly marks the object of たい (を also possible)."
+        },
+        {
+          "id": "recap_0625_te_connect",
+          "front": "〜て、〜",
+          "frontSub": "",
+          "frontLabel": "connecting two verbs?",
+          "back": "do A and (then) B — join actions with the て-form",
+          "backSub": "",
+          "notes": "大涌谷に行って、黒たまごが食べたいです。"
+        },
+        {
+          "id": "recap_0625_koto_review",
+          "front": "〜たことがあります",
+          "frontSub": "",
+          "frontLabel": "What does it express?",
+          "back": "have done / have the experience of [verb]",
+          "backSub": "",
+          "notes": "Review from 6/18: past (た) form + ことがあります."
+        }
+      ]
+    }
+  ]
+}

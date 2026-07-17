@@ -1,0 +1,154 @@
+{
+  "id": "recap_2026_07_09",
+  "name": "Class Recap — July 9",
+  "icon": "📅",
+  "date": "2026-07-09",
+  "next_class": "2026-07-16",
+  "teacher": "Atsuko T",
+  "homework": "Review Lesson 5 (verb conjugation — て-form / た-form). Next class (7/16): Parker-san's story, Easy Japanese skit #37 (〜んですが to explain a problem and ask for help politely), verb-conjugation review, and an N5 kanji test — just give it a try for motivation!",
+  "topics_covered": [
+    "〜てくれる (do something for me)",
+    "〜たり〜たりする (listing actions)",
+    "〜たり vs 〜て",
+    "Noun modification (relative clauses)",
+    "Reading long sentences",
+    "Prep: 〜んですが"
+  ],
+  "summary": [
+    {
+      "h": "〜てくれる — a favor for me",
+      "items": [
+        "て-form + くれる means someone does an action as a favor, kindness, or benefit for the speaker (or someone close).",
+        "English: 'somebody did something for me.'",
+        "ジェイさんが看板を描いてくれました = Jay drew the sign for me."
+      ]
+    },
+    {
+      "h": "〜たり〜たりする — listing activities",
+      "items": [
+        "た-form + り、た-form + り + する = 'I do things like A and B' — representative examples, with other activities implied.",
+        "踊ったり、ケーキを食べたりしました = We did things like dancing and eating cake.",
+        "Contrast with て: 〜たり〜たり lists examples, while 〜て puts actions in strict time order (A, then B)."
+      ]
+    },
+    {
+      "h": "Noun modification & long sentences",
+      "items": [
+        "A modifier — even a whole clause — comes before the noun it describes.",
+        "For a long sentence, focus on the end for the main idea; the phrases before a noun are modifying it.",
+        "果物がたくさん乗ったアイスクリーム = ice cream topped with lots of fruit (main noun: ice cream).",
+        "ボーフムとイエーナに住んでいる友達に会うつもりです = I plan to meet friends who live in Bochum and Jena."
+      ]
+    },
+    {
+      "h": "Getting ready for 7/16",
+      "items": [
+        "Easy Japanese #37 introduces 〜んですが — politely explain a trouble, then ask for help.",
+        "Review Lesson 5 verb conjugation. There will also be an N5 kanji test — just try it for motivation."
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "〜てくれる — A Favor For Me",
+      "notes": "て-form + くれる = someone does something as a kindness/benefit for me.",
+      "cards": [
+        {
+          "id": "recap_0709_tekureru_intro",
+          "front": "〜てくれる",
+          "frontSub": "",
+          "frontLabel": "What does it express?",
+          "back": "someone does something for me (as a favor)",
+          "backSub": "",
+          "notes": "て-form + くれる. Kindness/benefit directed at the speaker or someone close."
+        },
+        {
+          "id": "recap_0709_tekureru_ex",
+          "front": "かんばんをかいてくれました",
+          "frontSub": "看板を描いてくれました",
+          "back": "(He) drew the sign for me",
+          "backSub": "kanban o kaite kuremashita",
+          "notes": "ジェイさんが看板を描いてくれました = Jay drew the sign for me."
+        }
+      ]
+    },
+    {
+      "name": "〜たり〜たりする — Listing Activities",
+      "notes": "た-form + り、た-form + り + する = do things like A and B (examples; others implied).",
+      "cards": [
+        {
+          "id": "recap_0709_tari_intro",
+          "front": "〜たり、〜たりする",
+          "frontSub": "",
+          "frontLabel": "What does it express?",
+          "back": "do things like A and B (examples; others implied)",
+          "backSub": "",
+          "notes": "た-form + り. A non-exhaustive list of activities."
+        },
+        {
+          "id": "recap_0709_tari_ex",
+          "front": "おどったり、たべたりしました",
+          "frontSub": "踊ったり、食べたりしました",
+          "back": "We did things like dancing and eating",
+          "backSub": "odottari, tabetari shimashita",
+          "notes": "Random examples — other activities are implied."
+        },
+        {
+          "id": "recap_0709_tari_vs_te",
+          "front": "〜たり vs 〜て",
+          "frontSub": "",
+          "frontLabel": "difference?",
+          "back": "たり = examples (A, B, …); て = strict sequence (A, then B)",
+          "backSub": "",
+          "notes": "〜たり〜たり lists things like A and B; 〜て orders them in time."
+        }
+      ]
+    },
+    {
+      "name": "Noun Modification & Long Sentences",
+      "notes": "Modifiers come before the noun; the main idea is at the end of the sentence.",
+      "cards": [
+        {
+          "id": "recap_0709_mod_intro",
+          "front": "[modifier] + noun",
+          "frontSub": "",
+          "frontLabel": "word order?",
+          "back": "the modifier (even a whole clause) comes before the noun",
+          "backSub": "",
+          "notes": "Focus on the end of a long sentence for the main idea; earlier phrases modify the noun."
+        },
+        {
+          "id": "recap_0709_mod_icecream",
+          "front": "くだものがたくさんのったアイスクリーム",
+          "frontSub": "果物がたくさん乗ったアイスクリーム",
+          "back": "ice cream topped with lots of fruit",
+          "backSub": "kudamono ga takusan notta aisukuriimu",
+          "notes": "乗った modifies アイスクリーム — the main noun is 'ice cream'."
+        },
+        {
+          "id": "recap_0709_mod_friends",
+          "front": "ボーフムとイエーナにすんでいるともだち",
+          "frontSub": "ボーフムとイエーナに住んでいる友達",
+          "back": "friends who live in Bochum and Jena",
+          "backSub": "Boofumu to Ieena ni sunde iru tomodachi",
+          "notes": "住んでいる modifies 友達. …友達に会うつもりです = plan to meet those friends."
+        }
+      ]
+    },
+    {
+      "name": "Prep for 7/16 — 〜んですが",
+      "notes": "Easy Japanese #37: 〜んですが to explain a problem and ask for help politely.",
+      "cards": [
+        {
+          "id": "recap_0709_ndesuga",
+          "front": "〜んですが…",
+          "frontSub": "",
+          "frontLabel": "What is it for?",
+          "back": "politely explain a situation/trouble, then ask for help",
+          "backSub": "",
+          "notes": "State the background with んですが, then make your request. (Easy Japanese #37)"
+        }
+      ]
+    }
+  ]
+}
